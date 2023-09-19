@@ -1,692 +1,703 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Energy Summary</title>
-    <link rel="icon" href="favicon/favicon.ico" />
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="dist/apexcharts.min.js" />
-    <!-- google fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <title>Energy Summary</title>
+  <link rel="icon" href="favicon/favicon.ico" />
 
-    <!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
-    <style>
-      body {
-        overflow-y: hidden;
-        /*height: 100vh;
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="dist/apexcharts.min.js" />
+  <!-- google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
+  <style>
+    body {
+      overflow-y: hidden;
+      /*height: 100vh;
         /* font-family: poppins; */
-      }
+    }
 
-      /* new */
-      .admin-backgroud {
-        background-image: linear-gradient(rgb(0 0 0 / 52%), rgb(3 3 3 / 52%)),
-          url("images/B30_Exterior_D1.png");
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-      }
+    /* new */
+    .admin-backgroud {
+      background-image: linear-gradient(rgb(0 0 0 / 52%), rgb(3 3 3 / 52%)),
+        url("images/B30_Exterior_D1.png");
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
 
-      .admin-backgroudss {
-        background-image: linear-gradient(rgb(0 0 0 /100%), rgb(3 3 3 / 65%)),
-          url("images/B30_Exterior_D1.png");
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-      }
+    .admin-backgroudss {
+      background-image: linear-gradient(rgb(0 0 0 /100%), rgb(3 3 3 / 65%)),
+        url("images/B30_Exterior_D1.png");
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
 
-      .admin-heading {
-        padding-top: 2rem;
-      }
+    .admin-heading {
+      padding-top: 2rem;
+    }
 
-      .admin-heading h1 {
-        color: white;
-        font-size: 1.8rem;
-      }
+    .admin-heading h1 {
+      color: white;
+      font-size: 1.8rem;
+    }
 
-      .energy-card {
-        padding: 15px;
-        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3) !important;
+    .energy-card {
+      padding: 15px;
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3) !important;
+      height: 100%;
+    }
+
+    .energy-card h4 {
+      font-size: 1.35rem;
+      color: #495057;
+    }
+
+    .energy-card p {
+      color: #74788d;
+    }
+
+    .energy-card h5 {
+      color: #74788d;
+    }
+
+    .energy-card .images {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vGauge {
+      width: 145px;
+      height: 145px;
+    }
+
+    .vGauge-base {
+      fill: #edebeb;
+    }
+
+    .energy-graph {
+      height: 100%;
+      min-height: 285px;
+
+      background-color: rgba(244, 245, 247, 0.6);
+
+      align-items: center;
+    }
+
+    .energy-graph h4 {
+      font-size: 20px;
+      font-weight: bold;
+      padding: 10px;
+    }
+
+    .vGauge-val {
+      font-weight: 700;
+      font-size: 1.1em;
+    }
+
+    .energy-wrapper {
+      height: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: relative;
+    }
+
+    .energy-wrapper a {
+      text-decoration: none;
+      background-color: rgb(81, 90, 110);
+      width: 309px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      border-radius: 30px;
+    }
+
+    .energy-wrapper-inner i {
+      color: rgb(45, 140, 240);
+      font-size: 3.5rem;
+    }
+
+    .energy-wrapper-inner h1 {
+      color: rgb(81, 90, 110);
+      font-size: 3rem;
+      font-weight: 900;
+    }
+
+    .community-box {
+      display: flex;
+      justify-content: center;
+      /* flex-wrap: wrap; */
+    }
+
+    /* updated css */
+    .headings {
+      display: block;
+      text-align: center;
+      font-weight: bolder;
+      font-size: calc(22px + (32 - 22) * (100vw - 375px) / (1920 - 375));
+      color: #1e2277;
+      line-height: calc(33px + (48 - 33) * (100vh - 375px) / (1322 - 375));
+    }
+
+    .cards-heading {
+      font-size: calc(18px + (20 - 18) * (100vw - 375px) / (1920 - 375));
+      line-height: calc(27px + (30 - 27) * (100vh - 375px) / (1322 - 375));
+      font-weight: 600px;
+      color: #0085ff;
+    }
+
+    .hr-style {
+      background-color: #0085ff;
+      height: 4px;
+      width: 120px;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    .card-paragraph1 {
+      font-size: 18px;
+      font-weight: 500px;
+      line-height: 27px;
+      margin-bottom: 0;
+    }
+
+    .card-paragraph2 {
+      color: #0085ff;
+      font-size: 16px;
+      font-weight: 500px;
+      line-height: 24px;
+      margin-bottom: 0;
+    }
+
+    .card-main-div {
+      border-radius: 15px;
+      box-shadow: 2px 4px 33px 0px rgba(0, 0, 0, 0.05);
+      -webkit-box-shadow: 2px 4px 33px 0px rgba(0, 0, 0, 0.05);
+      -moz-box-shadow: 2px 4px 33px 0px rgba(0, 0, 0, 0.05);
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      width: calc(335px + (354 - 335) * (100vw - 375px) / (1920 - 375));
+      height: 172px;
+    }
+
+    .card-img {
+      background-color: #f4f7f9;
+      padding: 5px;
+      border-radius: 4px;
+      width: 60px;
+      height: 60px;
+    }
+
+    .cards {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .total-power {
+      border-radius: 20px;
+    }
+
+    .community-container {
+      display: flex;
+      justify-content: space-between;
+      background-image: url("./images/bg1.svg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      border-radius: 14px;
+      padding: 20px;
+      color: white;
+      max-width: 1881px;
+    }
+
+    .total-power {
+      background-color: white;
+      font-weight: 500;
+      font-size: calc(18px + (20 - 18) * (100vw - 375px) / (1920 - 375));
+      width: 257px;
+      height: calc(295px + (295 - 295) * (100vh - 375px) / (1322 - 375));
+      color: black;
+      text-align: center;
+      padding: 8px;
+    }
+
+    .machine1 {
+      max-width: 493px;
+      height: auto;
+      margin: 0;
+      padding-top: 30px;
+    }
+
+    .machine-container-section {
+      display: flex;
+      gap: 10px;
+      position: relative;
+    }
+
+    .water-power {
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 8px;
+      max-width: 193px;
+    }
+
+    .community-heading {
+      font-size: 26px;
+      font-weight: 700px;
+      line-height: 39px;
+      text-align: center;
+      padding: 5px 0;
+    }
+
+    .star-sec {
+      display: flex;
+      justify-content: start;
+      align-items: start;
+    }
+
+    .mr30 {
+      margin-right: 30px;
+    }
+
+    .water-star-sec {
+      width: 193px;
+    }
+
+    .water-star-sec img {
+      max-width: 46px;
+    }
+
+    .water-star-sec div {
+      display: inline-block;
+    }
+
+    .water-power-heading {
+      font-size: 15px;
+      font-weight: 500px;
+    }
+
+    .water2 {
+      max-width: 150px;
+      height: 100px;
+    }
+
+    .water-text {
+      text-align: center;
+    }
+
+    .water-text p {
+      color: #00ff5d;
+    }
+
+    .chiller-text p {
+      color: #00ff5d;
+      margin-bottom: 8px;
+    }
+
+    .chiller-text h5 {
+      text-align: center;
+    }
+
+    .red-card h5 {
+      color: #f8712e;
+    }
+
+    .red-card .card-paragraph2 {
+      color: #f8712e;
+    }
+
+    .red-hr {
+      background-color: #f8712e;
+      height: 4px;
+      width: 120px;
+      margin: 0 !important;
+    }
+
+    .green-card h5 {
+      color: #2dbf3c;
+    }
+
+    .green-card .card-paragraph2 {
+      color: #2dbf3c;
+    }
+
+    .green-hr {
+      background-color: #2dbf3c;
+      height: 4px;
+      width: 120px;
+      margin: 0 !important;
+    }
+
+    .yellow-card h5 {
+      color: #e1b900;
+    }
+
+    .yellow-card .card-paragraph2 {
+      color: #e1b900;
+    }
+
+    .yellow-hr {
+      background-color: #e1b900;
+      height: 4px;
+      width: 120px;
+      margin: 0 !important;
+    }
+
+    .chiller-text {
+      margin-bottom: 40px;
+    }
+
+    .chiller-text-wrapper {
+      display: flex;
+      gap: 30px;
+
+    }
+
+    .overlay-text {
+      text-align: center;
+    }
+
+    .overlay-text p {
+      color: #00ff5d;
+      font-size: 40px;
+      font-weight: bolder;
+    }
+
+    .flex-align {
+      display: flex;
+      align-items: center;
+    }
+
+    @media screen and (max-width: 576px) {
+
+      body {
         height: 100%;
-      }
-
-      .energy-card h4 {
-        font-size: 1.35rem;
-        color: #495057;
-      }
-
-      .energy-card p {
-        color: #74788d;
-      }
-
-      .energy-card h5 {
-        color: #74788d;
-      }
-
-      .energy-card .images {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .vGauge {
-        width: 145px;
-        height: 145px;
-      }
-
-      .vGauge-base {
-        fill: #edebeb;
-      }
-
-      .energy-graph {
-        height: 100%;
-        min-height: 285px;
-
-        background-color: rgba(244, 245, 247, 0.6);
-
-        align-items: center;
-      }
-
-      .energy-graph h4 {
-        font-size: 20px;
-        font-weight: bold;
-        padding: 10px;
-      }
-
-      .vGauge-val {
-        font-weight: 700;
-        font-size: 1.1em;
-      }
-
-      .energy-wrapper {
-        height: 100%;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        position: relative;
-      }
-
-      .energy-wrapper a {
-        text-decoration: none;
-        background-color: rgb(81, 90, 110);
-        width: 309px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 1.2rem;
-        border-radius: 30px;
-      }
-
-      .energy-wrapper-inner i {
-        color: rgb(45, 140, 240);
-        font-size: 3.5rem;
-      }
-
-      .energy-wrapper-inner h1 {
-        color: rgb(81, 90, 110);
-        font-size: 3rem;
-        font-weight: 900;
       }
 
       .community-box {
         display: flex;
         justify-content: center;
-        /* flex-wrap: wrap; */
+        flex-wrap: wrap;
       }
-      /* updated css */
-      .headings {
-        display: block;
-        text-align: center;
-        font-weight: bolder; 
-        font-size: calc(22px + (32 - 22) * (100vw - 375px) / (1920 - 375));
-        color: #1e2277;
-        line-height: calc(33px + (48 - 33) * (100vh - 375px) / (1322 - 375));
-      }
-      .cards-heading {
-        font-size: calc(18px + (20 - 18) * (100vw - 375px) / (1920 - 375));
-        line-height: calc(27px + (30 - 27) * (100vh - 375px) / (1322 - 375));
-        font-weight: 600px;
-        color: #0085ff;
-      }
-      .hr-style {
-        background-color: #0085ff;
-        height: 4px;
-        width: 120px;
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-      }
-      .card-paragraph1 {
-        font-size: 18px;
-        font-weight: 500px;
-        line-height: 27px;
-        margin-bottom: 0;
-      }
-      .card-paragraph2 {
-        color: #0085ff;
-        font-size: 16px;
-        font-weight: 500px;
-        line-height: 24px;
-        margin-bottom: 0;
-      }
-      .card-main-div {
-        border-radius: 15px;
-        box-shadow: 2px 4px 33px 0px rgba(0, 0, 0, 0.05);
-        -webkit-box-shadow: 2px 4px 33px 0px rgba(0, 0, 0, 0.05);
-        -moz-box-shadow: 2px 4px 33px 0px rgba(0, 0, 0, 0.05);
-        padding: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: start;
-        width: calc(335px + (354 - 335) * (100vw - 375px) / (1920 - 375));
-        height: 172px;
-      }
-      .card-img {
-        background-color: #f4f7f9;
-        padding: 5px;
-        border-radius: 4px;
-        width: 60px;
-        height: 60px;
-      }
-      .cards {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .total-power {
-        border-radius: 20px;
-      }
+
+      .cards,
       .community-container {
-        display: flex;
-        justify-content: space-between;
-        background-image: url("./images/bg1.svg");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
-        border-radius: 14px;
-        padding:20px;
-        color: white;
-        max-width: 1881px;
+        flex-direction: column;
       }
-      .total-power {
-        background-color: white;
-        font-weight: 500;
-        font-size: calc(18px + (20 - 18) * (100vw - 375px) / (1920 - 375));
-        width: 257px;
-        height: calc(295px + (295 - 295) * (100vh - 375px) / (1322 - 375));
-        color: black;
-        text-align: center;
-        padding: 8px;
-      }
-      .machine1 {
-        max-width: 493px;
-        height: auto;
-        margin: 0;
-      }
-      .machine-container-section {
-        display: flex;
-        gap: 10px;
-      }
-      .water-power {
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.2);
-        padding: 8px;
-        max-width: 193px;
-      }
-      .community-heading {
-        font-size: 26px;
-        font-weight: 700px;
-        line-height: 39px;
-        text-align: center;
-        padding: 5px 0;
-      }
-      .star-sec {
-        display: flex;
-        justify-content: start;
-        align-items: start;
-      }
+    }
 
-      .mr30{
-        margin-right: 30px;
-      }
+    /* Wahid CSS - START  */
+    .glow-text {
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 0 10px #00FF5D,
+        /* White glow */
+        0 0 5px #00FF5D,
+        /* White glow */
+        0 0 0px #00FF5D;
+      position: absolute;
+      top: 0;
+      right: 230px;
+      text-align: center;
+    }
 
-      .water-star-sec{
-        width: 193px;
-      }
+    .glow-text span {
+      display: block;
+    }
+    .text1{
+      font-size: 12px;
+      color: #37c56b;
+      text-shadow: 0 0 0px #00FF5D,
+        /* White glow */
+        0 0 1px #00FF5D,
+        /* White glow */
+        0 0 0px #00FF5D;
+        position: absolute;
+      top: 30px;
+      left: 120px;
+    }
+    .text2{
+      font-size: 12px;
+      color: #37c56b;
+      text-shadow: 0 0 0px #00FF5D,
+        /* White glow */
+        0 0 1px #00FF5D,
+        /* White glow */
+        0 0 0px #00FF5D;
+        position: absolute;
+      top: 53px;
+      left: 100px;
+    }
+    .text3{
+      font-size: 12px;
+      color: #37c56b;
+      text-shadow: 0 0 0px #00FF5D,
+        /* White glow */
+        0 0 1px #00FF5D,
+        /* White glow */
+        0 0 0px #00FF5D;
+        position: absolute;
+      top: 135px;
+      left: 5px;
+    }
+    .text4{
+      font-size: 12px;
+      color: #37c56b;
+      text-shadow: 0 0 0px #00FF5D,
+        /* White glow */
+        0 0 1px #00FF5D,
+        /* White glow */
+        0 0 0px #00FF5D;
+        position: absolute;
+      top: 220px;
+      left: -70px;
+    }
+    /* Wahid CSS - END  */
+  </style>
+</head>
 
-      .water-star-sec img{
-        max-width: 46px;
-      }
-
-      .water-star-sec div{
-        display: inline-block;
-      }
-      .water-power-heading {
-        font-size: 15px;
-        font-weight: 500px;
-      }
-      .water2 {
-        max-width: 150px;
-        height: 100px;
-      }
-      .water-text {
-        text-align: center;
-      }
-      .water-text p {
-        color: #00ff5d;
-      }
-      .chiller-text p {
-        color: #00ff5d;
-        margin-bottom: 8px;
-      }
-      .chiller-text h5 {
-        text-align: center;
-      }
-      .red-card h5 {
-        color: #f8712e;
-      }
-      .red-card .card-paragraph2 {
-        color: #f8712e;
-      }
-      .red-hr {
-        background-color: #f8712e;
-        height: 4px;
-        width: 120px;
-        margin: 0 !important;
-      }
-      .green-card h5 {
-        color: #2dbf3c;
-      }
-      .green-card .card-paragraph2 {
-        color: #2dbf3c;
-      }
-      .green-hr {
-        background-color: #2dbf3c;
-        height: 4px;
-        width: 120px;
-        margin: 0 !important;
-      }
-      .yellow-card h5 {
-        color: #e1b900;
-      }
-      .yellow-card .card-paragraph2 {
-        color: #e1b900;
-      }
-      .yellow-hr {
-        background-color: #e1b900;
-        height: 4px;
-        width: 120px;
-        margin: 0 !important;
-      }
-
-      .chiller-text{
-        margin-bottom: 40px;
-      }
-
-      .chiller-text-wrapper{
-        display: flex;
-        gap: 30px;
-
-      }
-
-      .overlay-text{
-        text-align: center;
-      }
-
-      .overlay-text p{
-        color: #00ff5d;
-        font-size: 40px;
-        font-weight: bolder;
-      }
-
-      .flex-align{
-        display: flex;
-        align-items: center;
-      }
-
-      @media screen and (max-width: 576px) {
-
-        body{
-          height: 100%;
-        }
-        .community-box {
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-        }
-
-        .cards, .community-container{
-          flex-direction: column;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-bg navbar-top" data="fade-down">
-      <a class="navbar-brand" href="file:^Web/KAUST_HTML/KAUST/Main_Page.html"
-        ><img width="60" src="images/logo.png" alt=""
-      /></a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-btn"
-          ><i class="fa fa-bars" aria-hidden="true"></i
-        ></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto navlist nav-inner-list-one">
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              KAUST Zones <i class="fa fa-chevron-down" aria-hidden="true"></i>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Campus Zone</a>
-              <a
-                class="dropdown-item"
-                href="file:^Web/KAUST_HTML/KAUST/RPIC_Complex.html"
-                >RPIC Zone</a
-              >
-              <a
-                class="dropdown-item"
-                href="file:^Web/KAUST_HTML/KAUST/CMOR_Complex.html"
-                >CMOR Zone</a
-              >
-              <a
-                class="dropdown-item"
-                href="file:^Web/KAUST_HTML/KAUST/KRTP_Complex.html"
-                >KRTP Zone</a
-              >
-              <a class="dropdown-item" href="#">Garden Residential</a>
-              <a class="dropdown-item" href="#">Island</a>
-              <a class="dropdown-item" href="#">Palms Residential</a>
-            </div>
-          </li>
-          <li class="nav-item active">
-            <a id="firestatusid" class="nav-link" href="#">Fire Status </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Histories</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Overview <i class="fa fa-chevron-down" aria-hidden="true"></i>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a
-                class="dropdown-item"
-                href="file:^Web/KAUST_HTML/KAUST/IKAS_Overview.html"
-                >IKAS Overview</a
-              >
-              <a
-                class="dropdown-item"
-                href="file:^Web/KAUST_HTML/KAUST/Academic_Energy_Dashboard.html"
-                >Academic Energy</a
-              >
-              <a class="dropdown-item" href="#">Campus Energy</a>
-              <a class="dropdown-item" href="#">Network Status</a>
-            </div>
-          </li>
-          <li class="nav-item font-size mr-lg-3">
-            <a id="temperature" class="nav-link value"
-              >37Â°C
-              <i class="fa fa-moon-o" style="color: rgb(255, 255, 255)"></i
-            ></a>
-          </li>
-          <li class="nav-item font-size mr-lg-3">
-            <a id="humidity" class="nav-link value"
-              >88% <i class="fa fa-tint" style="color: rgb(255, 255, 255)"></i
-              ><i
-                class="fa fa-tint"
-                style="
+<body>
+  <nav class="navbar navbar-expand-lg navbar-bg navbar-top" data="fade-down">
+    <a class="navbar-brand" href="file:^Web/KAUST_HTML/KAUST/Main_Page.html"><img width="60" src="images/logo.png"
+        alt="" /></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-btn"><i class="fa fa-bars" aria-hidden="true"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto navlist nav-inner-list-one">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            KAUST Zones <i class="fa fa-chevron-down" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Campus Zone</a>
+            <a class="dropdown-item" href="file:^Web/KAUST_HTML/KAUST/RPIC_Complex.html">RPIC Zone</a>
+            <a class="dropdown-item" href="file:^Web/KAUST_HTML/KAUST/CMOR_Complex.html">CMOR Zone</a>
+            <a class="dropdown-item" href="file:^Web/KAUST_HTML/KAUST/KRTP_Complex.html">KRTP Zone</a>
+            <a class="dropdown-item" href="#">Garden Residential</a>
+            <a class="dropdown-item" href="#">Island</a>
+            <a class="dropdown-item" href="#">Palms Residential</a>
+          </div>
+        </li>
+        <li class="nav-item active">
+          <a id="firestatusid" class="nav-link" href="#">Fire Status </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Histories</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Overview <i class="fa fa-chevron-down" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="file:^Web/KAUST_HTML/KAUST/IKAS_Overview.html">IKAS Overview</a>
+            <a class="dropdown-item" href="file:^Web/KAUST_HTML/KAUST/Academic_Energy_Dashboard.html">Academic
+              Energy</a>
+            <a class="dropdown-item" href="#">Campus Energy</a>
+            <a class="dropdown-item" href="#">Network Status</a>
+          </div>
+        </li>
+        <li class="nav-item font-size mr-lg-3">
+          <a id="temperature" class="nav-link value">37Â°C
+            <i class="fa fa-moon-o" style="color: rgb(255, 255, 255)"></i></a>
+        </li>
+        <li class="nav-item font-size mr-lg-3">
+          <a id="humidity" class="nav-link value">88% <i class="fa fa-tint" style="color: rgb(255, 255, 255)"></i><i
+              class="fa fa-tint" style="
                   color: rgb(255, 255, 255);
                   position: absolute;
                   margin-left: -6px;
                   margin-top: 15px;
-                "
-              ></i
-            ></a>
+                "></i></a>
+        </li>
+        <li class="nav-item active font-size">
+          <a class="nav-link green" href="#" id="username"><i class="fa fa-user" aria-hidden="true"></i>User</a>
+        </li>
+        <li class="nav-item active font-size">
+          <a class="nav-link green" href="https://ikas.kaust.edu.sa/logout"><i id="logout" class="fa fa-sign-out">
+            </i></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container-fluid admin-backgroud px-0">
+    <div class="admin-heading px-3 fade-up">
+      <h1>Energy Summary Dashboard</h1>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-bottom fade-up">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown-2"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler"><i class="fa fa-bars" aria-hidden="true"></i></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown-2">
+        <ul class="navbar-nav navlist nav-inner-list">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="file:^Web/KAUST_HTML/KAUST/B30_Home_Page.html"
+              id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              CMOR_Building 30
+              <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item drop-active" href="file:^Web/KAUST_HTML/KAUST/B30_Home_Page.html">CMOR_Building 30
+                <i class="fa fa-check" aria-hidden="true"></i></a>
+              <a class="dropdown-item" href="#">CMOR_Building 25 <i aria-hidden="true"></i></a>
+              <a class="dropdown-item" href="#">CMOR_Building 26 <i aria-hidden="true"></i></a>
+              <a class="dropdown-item" href="#">CMOR_Building 27 <i aria-hidden="true"></i></a>
+              <a class="dropdown-item" href="#">CMOR_Building 28 <i aria-hidden="true"></i></a>
+              <a class="dropdown-item" href="#">CMOR_Building 33 <i aria-hidden="true"></i></a>
+            </div>
           </li>
-          <li class="nav-item active font-size">
-            <a class="nav-link green" href="#" id="username"
-              ><i class="fa fa-user" aria-hidden="true"></i>User</a
-            >
+          <li class="nav-item">
+            <a class="nav-link" href="#">Alarms</a>
           </li>
-          <li class="nav-item active font-size">
-            <a class="nav-link green" href="https://ikas.kaust.edu.sa/logout"
-              ><i id="logout" class="fa fa-sign-out"> </i
-            ></a>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Schedules</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Floors</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Equipment</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">BAS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">FDAS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">LICS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="file:^Web/KAUST_HTML/PMS Dashboards/B30_PMS_Overview.html">PMS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Histories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Reports</a>
           </li>
         </ul>
-      </div>
-    </nav>
-    <div class="container-fluid admin-backgroud px-0">
-      <div class="admin-heading px-3 fade-up">
-        <h1>Energy Summary Dashboard</h1>
-      </div>
-      <nav class="navbar navbar-expand-lg navbar-bottom fade-up">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNavDropdown-2"
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler"
-            ><i class="fa fa-bars" aria-hidden="true"></i
-          ></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown-2">
-          <ul class="navbar-nav navlist nav-inner-list">
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="file:^Web/KAUST_HTML/KAUST/B30_Home_Page.html"
-                id="navbarDropdownMenuLink"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                CMOR_Building 30
-                <i class="fa fa-chevron-down" aria-hidden="true"></i>
-              </a>
-              <div
-                class="dropdown-menu"
-                aria-labelledby="navbarDropdownMenuLink"
-              >
-                <a
-                  class="dropdown-item drop-active"
-                  href="file:^Web/KAUST_HTML/KAUST/B30_Home_Page.html"
-                  >CMOR_Building 30
-                  <i class="fa fa-check" aria-hidden="true"></i
-                ></a>
-                <a class="dropdown-item" href="#"
-                  >CMOR_Building 25 <i aria-hidden="true"></i
-                ></a>
-                <a class="dropdown-item" href="#"
-                  >CMOR_Building 26 <i aria-hidden="true"></i
-                ></a>
-                <a class="dropdown-item" href="#"
-                  >CMOR_Building 27 <i aria-hidden="true"></i
-                ></a>
-                <a class="dropdown-item" href="#"
-                  >CMOR_Building 28 <i aria-hidden="true"></i
-                ></a>
-                <a class="dropdown-item" href="#"
-                  >CMOR_Building 33 <i aria-hidden="true"></i
-                ></a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Alarms</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Schedules</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Floors</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Equipment</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">BAS</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">FDAS</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">LICS</a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="file:^Web/KAUST_HTML/PMS Dashboards/B30_PMS_Overview.html"
-                >PMS</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Histories</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Reports</a>
-            </li>
-          </ul>
-          <ul class="ml-auto pt-lg-3">
-            <div data-v-6472169e="" data-v-3723a0ae="" class="d-flex">
-              <i
-                id="serverStatusIcon"
-                data-v-6472169e=""
-                class="fa fa-arrow-circle-up"
-                aria-hidden="true"
-                style="
+        <ul class="ml-auto pt-lg-3">
+          <div data-v-6472169e="" data-v-3723a0ae="" class="d-flex">
+            <i id="serverStatusIcon" data-v-6472169e="" class="fa fa-arrow-circle-up" aria-hidden="true" style="
                   color: rgb(25, 190, 107);
                   line-height: 1.5;
                   margin-right: 5px;
-                "
-              ></i>
-              <div
-                id="serverStatus"
-                data-v-6472169e=""
-                style="color: rgb(255, 255, 255); line-height: 1.5"
-              >
-                Online
-              </div>
+                "></i>
+            <div id="serverStatus" data-v-6472169e="" style="color: rgb(255, 255, 255); line-height: 1.5">
+              Online
             </div>
-          </ul>
-        </div>
-      </nav>
-    </div>
+          </div>
+        </ul>
+      </div>
+    </nav>
+  </div>
 
-    <section>
-      <span class="headings">ACADEMIC BUILDINGS</span>
-      <div class="cards container-fluid">
-        <div class="card-main-div">
-          <div>
-            <span class="cards-heading">12,297.3 kW</span>
-            <hr class="hr-style" />
-            <p class="card-paragraph1">Power</p>
-            <p class="card-paragraph2">Academic Buildings</p>
-          </div>
-          <img src="./images/powerbtn.svg" alt="powerbtn" class="card-img" />
+  <section>
+    <span class="headings">ACADEMIC BUILDINGS</span>
+    <div class="cards container-fluid">
+      <div class="card-main-div">
+        <div>
+          <span class="cards-heading">12,297.3 kW</span>
+          <hr class="hr-style" />
+          <p class="card-paragraph1">Power</p>
+          <p class="card-paragraph2">Academic Buildings</p>
         </div>
-        <div class="card-main-div sec-card">
-          <div>
-            <span class="cards-heading">
-              <span>819.1 L/s</span>
-              <span style="display: block;">30,529.0 kW</span>
-              <span style="display: block;">2.28 L/s</span>
-            </span>
-            <hr class="hr-style" />
-            <p class="card-paragraph1">Chilled Water</p>
-            <p class="card-paragraph2">Academic Buildings</p>
-          </div>
-          <img src="./images/star.svg" alt="powerbtn" class="card-img" />
+        <img src="./images/powerbtn.svg" alt="powerbtn" class="card-img" />
+      </div>
+      <div class="card-main-div sec-card">
+        <div>
+          <span class="cards-heading">
+            <span>819.1 L/s</span>
+            <span style="display: block;">30,529.0 kW</span>
+            <span style="display: block;">2.28 L/s</span>
+          </span>
+          <hr class="hr-style" />
+          <p class="card-paragraph1">Chilled Water</p>
+          <p class="card-paragraph2">Academic Buildings</p>
         </div>
-        <div class="card-main-div">
-          <div class="yellow-card">
-            <span class="cards-heading">12,297.3 kW</span>
-            <hr class="yellow-hr" />
-            <p class="card-paragraph1">Photovoltic</p>
-            <p class="card-paragraph2">Academic Buildings</p>
-          </div>
-          <img src="./images/photovoltic.svg" alt="powerbtn" class="card-img" />
+        <img src="./images/star.svg" alt="powerbtn" class="card-img" />
+      </div>
+      <div class="card-main-div">
+        <div class="yellow-card">
+          <span class="cards-heading">12,297.3 kW</span>
+          <hr class="yellow-hr" />
+          <p class="card-paragraph1">Photovoltic</p>
+          <p class="card-paragraph2">Academic Buildings</p>
         </div>
-        <div class="card-main-div">
-          <div class="green-card">
-            <span class="cards-heading">9.0 L/s</span>
-            <hr class="green-hr" />
-            <p class="card-paragraph1">Domestic Water</p>
-            <p class="card-paragraph2">Academic Buildings</p>
-          </div>
-          <img src="./images/home.svg" alt="powerbtn" class="card-img" />
+        <img src="./images/photovoltic.svg" alt="powerbtn" class="card-img" />
+      </div>
+      <div class="card-main-div">
+        <div class="green-card">
+          <span class="cards-heading">9.0 L/s</span>
+          <hr class="green-hr" />
+          <p class="card-paragraph1">Domestic Water</p>
+          <p class="card-paragraph2">Academic Buildings</p>
         </div>
-        <div class="card-main-div">
-          <div class="red-card">
-            <span class="cards-heading">9.0 L/s</span>
-            <hr class="red-hr" />
-            <p class="card-paragraph1">Gallon</p>
-            <p class="card-paragraph2">Academic Buildings</p>
+        <img src="./images/home.svg" alt="powerbtn" class="card-img" />
+      </div>
+      <div class="card-main-div">
+        <div class="red-card">
+          <span class="cards-heading">9.0 L/s</span>
+          <hr class="red-hr" />
+          <p class="card-paragraph1">Gallon</p>
+          <p class="card-paragraph2">Academic Buildings</p>
+        </div>
+        <img src="./images/water2.svg" alt="powerbtn" class="card-img" />
+      </div>
+    </div>
+  </section>
+
+  <section class="container-fluid">
+    <span class="headings">COMMUNITY BUILDINGS</span>
+    <div class="community-container">
+      <div class="total-power">Total Power</div>
+      <div>
+        <div class="community-heading">Community Building</div>
+        <div class="machine-container-section">
+          <img src="./images/engine-only.svg" alt="machine1" class="machine1" />
+          <strong class="glow-text">Chillwe Water Flow <span>500 L/s</span></strong>
+          <span class="text1">CNDWR>></span>
+          <span class="text2">>>CNDWR</span>
+          <span class="text3">CNDWR>></span>
+          <span class="text4">>>CNDWR</span>
+          <div class="water-power">
+            <div class="star-sec">
+              <img src="./images/star.svg" alt="" />
+              <p class="water-power-heading">Chillwe Water Power</p>
+            </div>
           </div>
-          <img src="./images/water2.svg" alt="powerbtn" class="card-img" />
         </div>
       </div>
-    </section>
-
-    <section class="container-fluid">
-      <span class="headings">COMMUNITY BUILDINGS</span>
-      <div class="community-container">
-        <div class="total-power">Total Power</div>
+      <div>
         <div>
-          <div class="community-heading">Community Building</div>
+          <div class="community-heading">Harbor Building</div>
           <div class="machine-container-section">
-            <img src="./images/machine1.svg" alt="machine1" class="machine1" />
+            <img src="./images/engine-only.svg" alt="machine1" class="machine1" />
             <div class="water-power">
               <div class="star-sec">
                 <img src="./images/star.svg" alt="" />
@@ -695,342 +706,467 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+
+
+  </section>
+
+  <section class="container-fluid">
+    <span class="headings">OASIS BUILDINGS</span>
+    <div class="community-container">
+      <!-- <div class="total-power">Total Power</div> -->
+      <div class="chiller-text-wrapper">
         <div>
-          <div>
-            <div class="community-heading">Harbor Building</div>
-            <div class="machine-container-section">
-              <img
-                src="./images/machine1.svg"
-                alt="machine1"
-                class="machine1"
-              />
-              <div class="water-power">
-                <div class="star-sec">
-                  <img src="./images/star.svg" alt="" />
-                  <p class="water-power-heading">Chillwe Water Power</p>
-                </div>
-              </div>
-            </div>
+          <div class="chiller-text">
+            <p>Chiller Bypass Flow</p>
+            <h5>500 L/S</h5>
+          </div>
+
+          <div class="chiller-text">
+            <p>Chiller Bypass Flow</p>
+            <h5>500 L/S</h5>
+          </div>
+        </div>
+        <div>
+          <div class="chiller-text">
+            <p>Chiller Bypass Flow</p>
+            <h5>500 L/S</h5>
+          </div>
+          <div class="chiller-text">
+            <p>Chiller Bypass Flow</p>
+            <h5>500 L/S</h5>
           </div>
         </div>
       </div>
 
-     
-    </section>
+      <div>
+        <div class="machine-container-section">
+          <div class="overlay-text">
+            <span>No Of Chiller Running: </span>
+            <p>5</p>
+          </div>
 
-    <section class="container-fluid">
-      <span class="headings">OASIS BUILDINGS</span>
-      <div class="community-container">
-        <!-- <div class="total-power">Total Power</div> -->
-        <div class="chiller-text-wrapper">
-          <div>
-            <div class="chiller-text">
-              <p>Chiller Bypass Flow</p>
-              <h5>500 L/S</h5>
-            </div>
-
-            <div class="chiller-text">
-              <p>Chiller Bypass Flow</p>
-              <h5>500 L/S</h5>
+          <img src="./images/engine-only.svg" alt="machine1" class="machine1" />
+          <div class="water-power mr30">
+            <div class="star-sec">
+              <img src="./images/temperature1.svg" alt="" />
+              <p class="water-power-heading">Supply Temperature</p>
             </div>
           </div>
-        <div>
-          <div class="chiller-text">
-            <p>Chiller Bypass Flow</p>
-            <h5>500 L/S</h5>
-          </div>
-          <div class="chiller-text">
-            <p>Chiller Bypass Flow</p>
-            <h5>500 L/S</h5>
-          </div>
+          <div class="water-power">
+            <div class="star-sec">
+              <img src="./images/temperature1.svg" alt="" />
+              <p class="water-power-heading">Supply Temperature</p>
+            </div>
           </div>
         </div>
-
+      </div>
+      <div class="flex-align">
         <div>
           <div class="machine-container-section">
-            <div class="overlay-text">
-              <span>No Of Chiller Running: </span>
-              <p>5</p>
+            <img src="./images/water2.svg" alt="water2" class="water2" />
+            <div class="water-text">
+              <p>Chiller Total Return Flow</p>
+              <h4>207515 L/S</h4>
             </div>
-            
-            <img src="./images/machin2.svg" alt="machine1" class="machine1" />
-            <div class="water-power mr30">
-              <div class="star-sec">
-                <img src="./images/temperature1.svg" alt="" />
-                <p class="water-power-heading">Supply Temperature</p>
-              </div>
-            </div>
-            <div class="water-power">
-              <div class="star-sec">
-                <img src="./images/temperature1.svg" alt="" />
-                <p class="water-power-heading">Supply Temperature</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="flex-align">
-          <div>
-            <div class="machine-container-section">
-              <img src="./images/water2.svg" alt="water2" class="water2" />
-              <div class="water-text">
-                <p>Chiller Total Return Flow</p>
-                <h4>207515 L/S</h4>
-              </div>
-              <!-- <div class="water-power">
+            <!-- <div class="water-power">
                 <div class="star-sec">
                   <img src="./images/star.svg" alt="" />
                   <p class="water-power-heading">Chiller Total Return Flow</p>
                 </div>
               </div> -->
-            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
-    <script>
-      var communityDataInn = [];
-      var kwDataInn = 0;
-      var totalDataInn = 0;
-      var options = {
-        series: communityDataInn,
-        chart: {
-          width: "350px",
+  <script>
+    var communityDataInn = [];
+    var kwDataInn = 0;
+    var totalDataInn = 0;
+    var options = {
+      series: communityDataInn,
+      chart: {
+        width: "350px",
 
-          type: "donut",
+        type: "donut",
+      },
+      labels: ["KW", "Total"],
+      responsive: [
+        {
+          breakpoint: 1600,
+          options: {
+            chart: {
+              width: 300,
+            },
+          },
         },
-        labels: ["KW", "Total"],
-        responsive: [
-          {
-            breakpoint: 1600,
-            options: {
-              chart: {
-                width: 300,
-              },
+        {
+          breakpoint: 1350,
+          options: {
+            chart: {
+              width: 280,
             },
           },
-          {
-            breakpoint: 1350,
-            options: {
-              chart: {
-                width: 280,
-              },
-            },
-          },
-        ],
-      };
-
-      var chart = new ApexCharts(document.querySelector("#chart"), options);
-      chart.render();
-    </script>
-    <script>
-      var oasisDataInn = [];
-      var oasiskwDataInn = 0;
-      var oasistotalDataInn = 0;
-      var options1 = {
-        series: oasisDataInn,
-        chart: {
-          width: "350px",
-          type: "donut",
         },
-        labels: ["KW", "Total"],
-        responsive: [
-          {
-            breakpoint: 1600,
-            options: {
-              chart: {
-                width: 300,
-              },
+      ],
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+  </script>
+  <script>
+    var oasisDataInn = [];
+    var oasiskwDataInn = 0;
+    var oasistotalDataInn = 0;
+    var options1 = {
+      series: oasisDataInn,
+      chart: {
+        width: "350px",
+        type: "donut",
+      },
+      labels: ["KW", "Total"],
+      responsive: [
+        {
+          breakpoint: 1600,
+          options: {
+            chart: {
+              width: 300,
             },
           },
-          {
-            breakpoint: 1350,
-            options: {
-              chart: {
-                width: 280,
-              },
+        },
+        {
+          breakpoint: 1350,
+          options: {
+            chart: {
+              width: 280,
             },
           },
-        ],
-      };
+        },
+      ],
+    };
 
-      var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
-      chart1.render();
-    </script>
-    <script>
-      $(document).ready(function () {
-        // Transition effect for navbar
+    var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
+    chart1.render();
+  </script>
+  <script>
+    $(document).ready(function () {
+      // Transition effect for navbar
 
-        $(".navbar-toggler").click(function () {
-          $(".navbar-bg").toggleClass("solids");
-        });
-
-        $(".navbar-toggler-btn").click(function () {
-          $("#navbarNav").toggle();
-        });
+      $(".navbar-toggler").click(function () {
+        $(".navbar-bg").toggleClass("solids");
       });
-    </script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      AOS.init({
-        duration: 1000,
+
+      $(".navbar-toggler-btn").click(function () {
+        $("#navbarNav").toggle();
       });
-    </script>
+    });
+  </script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+    });
+  </script>
 
-    <script type="text/javascript" src="js/config.js"></script>
-    <script type="text/javascript" src="js/require.js"></script>
+  <script type="text/javascript" src="js/config.js"></script>
+  <script type="text/javascript" src="js/require.js"></script>
 
-    <script>
-      var myTimeout = 0;
-      function blinker() {
-        var d = document.getElementById("firestatusid");
-        d.style.color = d.style.color == "red" ? "white" : "red";
-        myTimeout = setTimeout("blinker()", 900);
+  <script>
+    var myTimeout = 0;
+    function blinker() {
+      var d = document.getElementById("firestatusid");
+      d.style.color = d.style.color == "red" ? "white" : "red";
+      myTimeout = setTimeout("blinker()", 900);
+    }
+
+    function stopBlinker() {
+      //clearTimeout(myTimeout);
+      //myTimeout = 0;
+      var d = document.getElementById("firestatusid");
+      d.style.color = d.style.color == "red" ? "white" : "white";
+      myTimeout = setTimeout("stopBlinker()", 1000);
+    }
+
+    require(["baja!", "dialogs"], function (baja, dialogs) {
+      "use strict";
+
+      var r = new baja.BatchResolve([
+        "station:|slot:/Drivers/NiagaraNetwork/UN2300/points/UN2300/BAS/LEVEL_5/SOLAR/SOLAR_5026/Temperature",
+        "station:|slot:/Drivers/NiagaraNetwork/UN2300/points/UN2300/BAS/LEVEL_5/SOLAR/SOLAR_5026/Humidity",
+        "station:|slot:/Services/AlarmService/Global$20Fire$20Points/GlobalFireStatus",
+        "station:|slot:/Drivers/NiagaraNetwork/IS_Status/KRTP_Status",
+        "station:|slot:/Drivers/NiagaraNetwork/IS_Status/CMOR_Status",
+        "station:|slot:/Drivers/NiagaraNetwork/IS_Status/RPICH_Status",
+        "station:|slot:/Drivers/NiagaraNetwork/CMOR/points/B30/B30_Controller_Status",
+        "station:|slot:/Drivers/NiagaraNetwork/DesigoCC/points/Oasis_Buildings/Total_Flow_Oasis",
+        "station:|slot:/Campus_Energy_Dashboard/Total_Campus_Elec_Consumption_kW",
+        "station:|slot:/Drivers/NiagaraNetwork/UN1550/points/UN1550/BAS/LEVEL_0/CHWS/CHWP_0001/Total_Campus_CHW_Flow",
+        "station:|slot:/Drivers/NiagaraNetwork/UN1550/points/UN1550/BAS/LEVEL_0/CHWS/CHWP_0001/Total_Campus_Cooling_KW",
+        "station:|slot:/Drivers/NiagaraNetwork/UN1550/points/UN1550/BAS/Campus_Total_Reverse_Flow/Campus_Total_Reverse_Flow",
+        "station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/PMS/PV/Total_Building_kW",
+        "station:|slot:/Campus_Energy_Dashboard/CAMPUS_Domestic_Water_Flow_Rate",
+        "station:|slot:/Drivers/NiagaraNetwork/DesigoCC/points/Oasis_Buildings/Total_Flow_Oasis_Icon",
+        "station:|slot:/Drivers/NiagaraNetwork/DesigoCC/points/Total_Flow_community",
+        "station:|slot:/Drivers/NiagaraNetwork/DesigoCC/points/Oasis_Buildings/Chiller/CHPL_MainHead_bypasflo",
+        "station:|slot:/Drivers/GUI/EnergySummary/Communityflowkw",
+        "station:|slot:/Drivers/GUI/EnergySummary/Communityflowtotal",
+        "station:|slot:/Drivers/GUI/EnergySummary/Oasisflow",
+        "station:|slot:/Drivers/GUI/EnergySummary/Oasisflowkw",
+        "station:|slot:/Drivers/GUI/EnergySummary/Oasisflowtotal",
+        "station:|slot:/Drivers/NiagaraNetwork/DesigoCC/points/Total_Energy_Harbor_Community",
+        "station:|slot:/Drivers/NiagaraNetwork/DesigoCC/points/Total_Energy_Community1",
+        "station:|slot:/Drivers/NiagaraNetwork/DesigoCC/points/Oasis_Buildings/Chiller/Total_Energy_Oasis",
+        "station:|slot:/Drivers/NiagaraNetwork/DesigoCC/points/Oasis_Buildings/Chiller/Energy_Oasis",
+      ]);
+      var sub = new baja.Subscriber(); // Also batch subscribe all resolved Components
+
+      /*r.resolve({ subscriber: sub })
+  .then(function () {
+    // Get resolved objects
+    var obj = r.getTargetObjects();
+  })
+  .catch(function (err) {
+    // Called if any of the ORDs fail to resolve
+  });*/
+      function update(comp) {
+        var nameLower = comp.getName().toLowerCase();
+        var outValue = comp.getOut().getValueDisplay();
+        var outNumValue = comp.getOut().getValue();
+        var outValueLower = comp.getOut().getValueDisplay().toLowerCase();
+
+        if (nameLower === "temperature") {
+          //Â°C
+          document.getElementById("temperature").innerHTML = outValue;
+        } else if (nameLower === "humidity") {
+          document.getElementById("humidity").innerHTML = outValue;
+        } else if (nameLower === "total_campus_elec_consumption_kw") {
+          document.getElementById("powerid").innerHTML = outValue;
+        } else if (nameLower === "total_campus_chw_flow") {
+          document.getElementById("chwsflowid").innerHTML = outValue;
+        } else if (nameLower === "total_campus_cooling_kw") {
+          document.getElementById("chwskwid").innerHTML = outValue;
+        } else if (nameLower === "campus_total_reverse_flow") {
+          document.getElementById("chwsreverseflowid").innerHTML = outValue;
+        } else if (nameLower === "total_building_kw") {
+          document.getElementById("pvid").innerHTML = outValue;
+        } else if (nameLower === "campus_domestic_water_flow_rate") {
+          document.getElementById("domesticid").innerHTML = outValue;
+        } else if (nameLower === "total_flow_oasis") {
+          document.getElementById("totalflowid").innerHTML = outValue;
+        } else if (nameLower === "total_flow_community") {
+          document.getElementById("temp_val_Communityid").innerHTML =
+            outValue;
+        } else if (nameLower === "chpl_mainhead_bypasflo") {
+          document.getElementById("temp_val_Osaisid").innerHTML = outValue;
+        } else if (
+          nameLower === "total_energy_harbor_community" ||
+          nameLower === "total_energy_community1"
+        ) {
+          communityDataInn = [];
+          if (nameLower === "total_energy_community1") {
+            kwDataInn = outNumValue;
+          }
+          if (nameLower === "total_energy_harbor_community") {
+            totalDataInn = outNumValue;
+          }
+
+          communityDataInn.push(kwDataInn);
+          communityDataInn.push(totalDataInn);
+
+          //baja.outln("Resolved alarmDataInn: " + alarmDataInn);
+          chart.updateSeries(communityDataInn);
+        } else if (
+          nameLower === "energy_oasis" ||
+          nameLower === "total_energy_oasis"
+        ) {
+          oasisDataInn = [];
+          if (nameLower === "energy_oasis") {
+            oasiskwDataInn = outNumValue;
+          }
+          if (nameLower === "total_energy_oasis") {
+            oasistotalDataInn = outNumValue;
+          }
+
+          oasisDataInn.push(oasiskwDataInn);
+          oasisDataInn.push(oasistotalDataInn);
+
+          //baja.outln("Resolved alarmDataInn: " + alarmDataInn);
+          chart1.updateSeries(oasisDataInn);
+        } else if (nameLower === "globalfirestatus") {
+          if (outValueLower === "normal") {
+            document.getElementById("firestatusid").style.color = "white";
+            stopBlinker();
+          } else if (outValueLower === "fire") {
+            document.getElementById("firestatusid").style.color = "red";
+            blinker();
+          }
+        } else if (nameLower === "b30_controller_status") {
+          document.getElementById("serverStatus").innerHTML = outValue;
+          if (outValueLower === "online") {
+            document.getElementById("serverStatus").style.color = "white";
+            document
+              .getElementById("serverStatusIcon")
+              .classList.remove("fa-arrow-circle-down");
+            document
+              .getElementById("serverStatusIcon")
+              .classList.add("fa-arrow-circle-up");
+            document.getElementById("serverStatusIcon").style.color =
+              "lightgreen";
+          } else if (outValueLower === "offline") {
+            document.getElementById("serverStatus").style.color = "white";
+            document
+              .getElementById("serverStatusIcon")
+              .classList.remove("fa-arrow-circle-up");
+            document
+              .getElementById("serverStatusIcon")
+              .classList.add("fa-arrow-circle-down");
+            document.getElementById("serverStatusIcon").style.color = "red";
+          }
+        } else if (nameLower === "total_flow_oasis_icon") {
+          if (outValueLower === "normal") {
+            document.getElementById("totalflowiconid").style.color =
+              "rgb(45, 140, 240)";
+          } else if (outValueLower === "high") {
+            document.getElementById("totalflowiconid").style.color = "red";
+          }
+        }
       }
+      // Or use the each method (will only be called if all ORDs resolve). Each will
+      // be called for each target.
+      r.resolve({
+        each: function () {
+          //baja.outln("Resolved: " + this.getOut().getValue());
+          var currentUser = " " + baja.getUserName().toLowerCase();
+          baja.outln("user: " + currentUser);
+          document.getElementById("username").innerHTML = currentUser;
 
-      function stopBlinker() {
-        //clearTimeout(myTimeout);
-        //myTimeout = 0;
-        var d = document.getElementById("firestatusid");
-        d.style.color = d.style.color == "red" ? "white" : "white";
-        myTimeout = setTimeout("stopBlinker()", 1000);
-      }
-
-      require(["baja!", "dialogs"], function (baja, dialogs) {
-        "use strict";
-
-        var r = new baja.BatchResolve([
-          "station:|slot:/Drivers/NiagaraNetwork/UN2300/points/UN2300/BAS/LEVEL_5/SOLAR/SOLAR_5026/Temperature",
-          "station:|slot:/Drivers/NiagaraNetwork/UN2300/points/UN2300/BAS/LEVEL_5/SOLAR/SOLAR_5026/Humidity",
-          "station:|slot:/Services/AlarmService/Global$20Fire$20Points/GlobalFireStatus",
-          "station:|slot:/Drivers/NiagaraNetwork/IS_Status/KRTP_Status",
-          "station:|slot:/Drivers/NiagaraNetwork/IS_Status/CMOR_Status",
-          "station:|slot:/Drivers/NiagaraNetwork/IS_Status/RPICH_Status",
-          "station:|slot:/Drivers/NiagaraNetwork/CMOR/points/B30/B30_Controller_Status",
-          "station:|slot:/Drivers/NiagaraNetwork/DesigoCC/points/Oasis_Buildings/Total_Flow_Oasis",
-          "station:|slot:/Campus_Energy_Dashboard/Total_Campus_Elec_Consumption_kW",
-          "station:|slot:/Drivers/NiagaraNetwork/UN1550/points/UN1550/BAS/LEVEL_0/CHWS/CHWP_0001/Total_Campus_CHW_Flow",
-          "station:|slot:/Drivers/NiagaraNetwork/UN1550/points/UN1550/BAS/LEVEL_0/CHWS/CHWP_0001/Total_Campus_Cooling_KW",
-          "station:|slot:/Drivers/NiagaraNetwork/UN1550/points/UN1550/BAS/Campus_Total_Reverse_Flow/Campus_Total_Reverse_Flow",
-          "station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/PMS/PV/Total_Building_kW",
-          "station:|slot:/Campus_Energy_Dashboard/CAMPUS_Domestic_Water_Flow_Rate",
-          "station:|slot:/Drivers/NiagaraNetwork/DesigoCC/points/Oasis_Buildings/Total_Flow_Oasis_Icon",
-          "station:|slot:/Drivers/NiagaraNetwork/DesigoCC/points/Total_Flow_community",
-          "station:|slot:/Drivers/NiagaraNetwork/DesigoCC/points/Oasis_Buildings/Chiller/CHPL_MainHead_bypasflo",
-          "station:|slot:/Drivers/GUI/EnergySummary/Communityflowkw",
-          "station:|slot:/Drivers/GUI/EnergySummary/Communityflowtotal",
-          "station:|slot:/Drivers/GUI/EnergySummary/Oasisflow",
-          "station:|slot:/Drivers/GUI/EnergySummary/Oasisflowkw",
-          "station:|slot:/Drivers/GUI/EnergySummary/Oasisflowtotal",
-          "station:|slot:/Drivers/NiagaraNetwork/DesigoCC/points/Total_Energy_Harbor_Community",
-          "station:|slot:/Drivers/NiagaraNetwork/DesigoCC/points/Total_Energy_Community1",
-          "station:|slot:/Drivers/NiagaraNetwork/DesigoCC/points/Oasis_Buildings/Chiller/Total_Energy_Oasis",
-          "station:|slot:/Drivers/NiagaraNetwork/DesigoCC/points/Oasis_Buildings/Chiller/Energy_Oasis",
-        ]);
-        var sub = new baja.Subscriber(); // Also batch subscribe all resolved Components
-
-        /*r.resolve({ subscriber: sub })
-    .then(function () {
-      // Get resolved objects
-      var obj = r.getTargetObjects();
-    })
-    .catch(function (err) {
-      // Called if any of the ORDs fail to resolve
-    });*/
-        function update(comp) {
-          var nameLower = comp.getName().toLowerCase();
-          var outValue = comp.getOut().getValueDisplay();
-          var outNumValue = comp.getOut().getValue();
-          var outValueLower = comp.getOut().getValueDisplay().toLowerCase();
-
-          if (nameLower === "temperature") {
+          if (this.getDisplayName().toLowerCase() === "temperature") {
             //Â°C
-            document.getElementById("temperature").innerHTML = outValue;
-          } else if (nameLower === "humidity") {
-            document.getElementById("humidity").innerHTML = outValue;
-          } else if (nameLower === "total_campus_elec_consumption_kw") {
-            document.getElementById("powerid").innerHTML = outValue;
-          } else if (nameLower === "total_campus_chw_flow") {
-            document.getElementById("chwsflowid").innerHTML = outValue;
-          } else if (nameLower === "total_campus_cooling_kw") {
-            document.getElementById("chwskwid").innerHTML = outValue;
-          } else if (nameLower === "campus_total_reverse_flow") {
-            document.getElementById("chwsreverseflowid").innerHTML = outValue;
-          } else if (nameLower === "total_building_kw") {
-            document.getElementById("pvid").innerHTML = outValue;
-          } else if (nameLower === "campus_domestic_water_flow_rate") {
-            document.getElementById("domesticid").innerHTML = outValue;
-          } else if (nameLower === "total_flow_oasis") {
-            document.getElementById("totalflowid").innerHTML = outValue;
-          } else if (nameLower === "total_flow_community") {
-            document.getElementById("temp_val_Communityid").innerHTML =
-              outValue;
-          } else if (nameLower === "chpl_mainhead_bypasflo") {
-            document.getElementById("temp_val_Osaisid").innerHTML = outValue;
+            document.getElementById("temperature").innerHTML =
+              this.getOut().getValueDisplay();
+          } else if (this.getDisplayName().toLowerCase() === "humidity") {
+            document.getElementById("humidity").innerHTML =
+              this.getOut().getValueDisplay();
           } else if (
-            nameLower === "total_energy_harbor_community" ||
-            nameLower === "total_energy_community1"
+            this.getDisplayName().toLowerCase() ===
+            "total_campus_elec_consumption_kw"
           ) {
-            communityDataInn = [];
-            if (nameLower === "total_energy_community1") {
-              kwDataInn = outNumValue;
+            document.getElementById("powerid").innerHTML =
+              this.getOut().getValueDisplay();
+          } else if (
+            this.getDisplayName().toLowerCase() === "total_campus_chw_flow"
+          ) {
+            document.getElementById("chwsflowid").innerHTML =
+              this.getOut().getValueDisplay();
+          } else if (
+            this.getDisplayName().toLowerCase() === "total_campus_cooling_kw"
+          ) {
+            document.getElementById("chwskwid").innerHTML =
+              this.getOut().getValueDisplay();
+          } else if (
+            this.getDisplayName().toLowerCase() ===
+            "campus_total_reverse_flow"
+          ) {
+            document.getElementById("chwsreverseflowid").innerHTML =
+              this.getOut().getValueDisplay();
+          } else if (
+            this.getDisplayName().toLowerCase() === "total_flow_oasis"
+          ) {
+            document.getElementById("totalflowid").innerHTML =
+              this.getOut().getValueDisplay();
+          } else if (
+            this.getDisplayName().toLowerCase() === "total_flow_community"
+          ) {
+            document.getElementById("temp_val_Communityid").innerHTML =
+              this.getOut().getValueDisplay();
+          } else if (
+            this.getDisplayName().toLowerCase() === "chpl_mainhead_bypasflo"
+          ) {
+            document.getElementById("temp_val_Osaisid").innerHTML =
+              this.getOut().getValueDisplay();
+          } else if (
+            this.getDisplayName().toLowerCase() === "total_building_kw"
+          ) {
+            document.getElementById("pvid").innerHTML =
+              this.getOut().getValueDisplay();
+          } else if (
+            this.getDisplayName().toLowerCase() ===
+            "campus_domestic_water_flow_rate"
+          ) {
+            document.getElementById("domesticid").innerHTML =
+              this.getOut().getValueDisplay();
+          } else if (
+            this.getDisplayName().toLowerCase() ===
+            "total_energy_community1" ||
+            this.getDisplayName().toLowerCase() ===
+            "total_energy_harbor_community"
+          ) {
+            if (
+              this.getDisplayName().toLowerCase() ===
+              "total_energy_community1"
+            ) {
+              kwDataInn = this.getOut().getValue();
             }
-            if (nameLower === "total_energy_harbor_community") {
-              totalDataInn = outNumValue;
+            if (
+              this.getDisplayName().toLowerCase() ===
+              "total_energy_harbor_community"
+            ) {
+              totalDataInn = this.getOut().getValue();
             }
 
-            communityDataInn.push(kwDataInn);
-            communityDataInn.push(totalDataInn);
-
+            communityDataInn.push(this.getOut().getValue());
             //baja.outln("Resolved alarmDataInn: " + alarmDataInn);
             chart.updateSeries(communityDataInn);
           } else if (
-            nameLower === "energy_oasis" ||
-            nameLower === "total_energy_oasis"
+            this.getDisplayName().toLowerCase() === "energy_oasis" ||
+            this.getDisplayName().toLowerCase() === "total_energy_oasis"
           ) {
-            oasisDataInn = [];
-            if (nameLower === "energy_oasis") {
-              oasiskwDataInn = outNumValue;
+            if (this.getDisplayName().toLowerCase() === "energy_oasis") {
+              oasiskwDataInn = this.getOut().getValue();
             }
-            if (nameLower === "total_energy_oasis") {
-              oasistotalDataInn = outNumValue;
+            if (
+              this.getDisplayName().toLowerCase() === "total_energy_oasis"
+            ) {
+              oasistotalDataInn = this.getOut().getValue();
             }
 
-            oasisDataInn.push(oasiskwDataInn);
-            oasisDataInn.push(oasistotalDataInn);
-
+            oasisDataInn.push(this.getOut().getValue());
             //baja.outln("Resolved alarmDataInn: " + alarmDataInn);
             chart1.updateSeries(oasisDataInn);
-          } else if (nameLower === "globalfirestatus") {
-            if (outValueLower === "normal") {
+          } else if (
+            this.getDisplayName().toLowerCase() === "globalfirestatus"
+          ) {
+            if (this.getOut().getValueDisplay().toLowerCase() === "normal") {
               document.getElementById("firestatusid").style.color = "white";
               stopBlinker();
-            } else if (outValueLower === "fire") {
+            } else if (
+              this.getOut().getValueDisplay().toLowerCase() === "fire"
+            ) {
               document.getElementById("firestatusid").style.color = "red";
               blinker();
             }
-          } else if (nameLower === "b30_controller_status") {
-            document.getElementById("serverStatus").innerHTML = outValue;
-            if (outValueLower === "online") {
+          } else if (
+            this.getDisplayName().toLowerCase() === "b30_controller_status"
+          ) {
+            document.getElementById("serverStatus").innerHTML =
+              this.getOut().getValueDisplay();
+            if (this.getOut().getValueDisplay().toLowerCase() === "online") {
               document.getElementById("serverStatus").style.color = "white";
               document
                 .getElementById("serverStatusIcon")
@@ -1040,7 +1176,9 @@
                 .classList.add("fa-arrow-circle-up");
               document.getElementById("serverStatusIcon").style.color =
                 "lightgreen";
-            } else if (outValueLower === "offline") {
+            } else if (
+              this.getOut().getValueDisplay().toLowerCase() === "offline"
+            ) {
               document.getElementById("serverStatus").style.color = "white";
               document
                 .getElementById("serverStatusIcon")
@@ -1048,181 +1186,32 @@
               document
                 .getElementById("serverStatusIcon")
                 .classList.add("fa-arrow-circle-down");
-              document.getElementById("serverStatusIcon").style.color = "red";
+              document.getElementById("serverStatusIcon").style.color =
+                "yellow";
             }
-          } else if (nameLower === "total_flow_oasis_icon") {
-            if (outValueLower === "normal") {
+          } else if (
+            this.getDisplayName().toLowerCase() === "total_flow_oasis_icon"
+          ) {
+            if (this.getOut().getValueDisplay().toLowerCase() === "normal") {
               document.getElementById("totalflowiconid").style.color =
                 "rgb(45, 140, 240)";
-            } else if (outValueLower === "high") {
+            } else if (
+              this.getOut().getValueDisplay().toLowerCase() === "high"
+            ) {
               document.getElementById("totalflowiconid").style.color = "red";
             }
           }
-        }
-        // Or use the each method (will only be called if all ORDs resolve). Each will
-        // be called for each target.
-        r.resolve({
-          each: function () {
-            //baja.outln("Resolved: " + this.getOut().getValue());
-            var currentUser = " " + baja.getUserName().toLowerCase();
-            baja.outln("user: " + currentUser);
-            document.getElementById("username").innerHTML = currentUser;
+        },
 
-            if (this.getDisplayName().toLowerCase() === "temperature") {
-              //Â°C
-              document.getElementById("temperature").innerHTML =
-                this.getOut().getValueDisplay();
-            } else if (this.getDisplayName().toLowerCase() === "humidity") {
-              document.getElementById("humidity").innerHTML =
-                this.getOut().getValueDisplay();
-            } else if (
-              this.getDisplayName().toLowerCase() ===
-              "total_campus_elec_consumption_kw"
-            ) {
-              document.getElementById("powerid").innerHTML =
-                this.getOut().getValueDisplay();
-            } else if (
-              this.getDisplayName().toLowerCase() === "total_campus_chw_flow"
-            ) {
-              document.getElementById("chwsflowid").innerHTML =
-                this.getOut().getValueDisplay();
-            } else if (
-              this.getDisplayName().toLowerCase() === "total_campus_cooling_kw"
-            ) {
-              document.getElementById("chwskwid").innerHTML =
-                this.getOut().getValueDisplay();
-            } else if (
-              this.getDisplayName().toLowerCase() ===
-              "campus_total_reverse_flow"
-            ) {
-              document.getElementById("chwsreverseflowid").innerHTML =
-                this.getOut().getValueDisplay();
-            } else if (
-              this.getDisplayName().toLowerCase() === "total_flow_oasis"
-            ) {
-              document.getElementById("totalflowid").innerHTML =
-                this.getOut().getValueDisplay();
-            } else if (
-              this.getDisplayName().toLowerCase() === "total_flow_community"
-            ) {
-              document.getElementById("temp_val_Communityid").innerHTML =
-                this.getOut().getValueDisplay();
-            } else if (
-              this.getDisplayName().toLowerCase() === "chpl_mainhead_bypasflo"
-            ) {
-              document.getElementById("temp_val_Osaisid").innerHTML =
-                this.getOut().getValueDisplay();
-            } else if (
-              this.getDisplayName().toLowerCase() === "total_building_kw"
-            ) {
-              document.getElementById("pvid").innerHTML =
-                this.getOut().getValueDisplay();
-            } else if (
-              this.getDisplayName().toLowerCase() ===
-              "campus_domestic_water_flow_rate"
-            ) {
-              document.getElementById("domesticid").innerHTML =
-                this.getOut().getValueDisplay();
-            } else if (
-              this.getDisplayName().toLowerCase() ===
-                "total_energy_community1" ||
-              this.getDisplayName().toLowerCase() ===
-                "total_energy_harbor_community"
-            ) {
-              if (
-                this.getDisplayName().toLowerCase() ===
-                "total_energy_community1"
-              ) {
-                kwDataInn = this.getOut().getValue();
-              }
-              if (
-                this.getDisplayName().toLowerCase() ===
-                "total_energy_harbor_community"
-              ) {
-                totalDataInn = this.getOut().getValue();
-              }
-
-              communityDataInn.push(this.getOut().getValue());
-              //baja.outln("Resolved alarmDataInn: " + alarmDataInn);
-              chart.updateSeries(communityDataInn);
-            } else if (
-              this.getDisplayName().toLowerCase() === "energy_oasis" ||
-              this.getDisplayName().toLowerCase() === "total_energy_oasis"
-            ) {
-              if (this.getDisplayName().toLowerCase() === "energy_oasis") {
-                oasiskwDataInn = this.getOut().getValue();
-              }
-              if (
-                this.getDisplayName().toLowerCase() === "total_energy_oasis"
-              ) {
-                oasistotalDataInn = this.getOut().getValue();
-              }
-
-              oasisDataInn.push(this.getOut().getValue());
-              //baja.outln("Resolved alarmDataInn: " + alarmDataInn);
-              chart1.updateSeries(oasisDataInn);
-            } else if (
-              this.getDisplayName().toLowerCase() === "globalfirestatus"
-            ) {
-              if (this.getOut().getValueDisplay().toLowerCase() === "normal") {
-                document.getElementById("firestatusid").style.color = "white";
-                stopBlinker();
-              } else if (
-                this.getOut().getValueDisplay().toLowerCase() === "fire"
-              ) {
-                document.getElementById("firestatusid").style.color = "red";
-                blinker();
-              }
-            } else if (
-              this.getDisplayName().toLowerCase() === "b30_controller_status"
-            ) {
-              document.getElementById("serverStatus").innerHTML =
-                this.getOut().getValueDisplay();
-              if (this.getOut().getValueDisplay().toLowerCase() === "online") {
-                document.getElementById("serverStatus").style.color = "white";
-                document
-                  .getElementById("serverStatusIcon")
-                  .classList.remove("fa-arrow-circle-down");
-                document
-                  .getElementById("serverStatusIcon")
-                  .classList.add("fa-arrow-circle-up");
-                document.getElementById("serverStatusIcon").style.color =
-                  "lightgreen";
-              } else if (
-                this.getOut().getValueDisplay().toLowerCase() === "offline"
-              ) {
-                document.getElementById("serverStatus").style.color = "white";
-                document
-                  .getElementById("serverStatusIcon")
-                  .classList.remove("fa-arrow-circle-up");
-                document
-                  .getElementById("serverStatusIcon")
-                  .classList.add("fa-arrow-circle-down");
-                document.getElementById("serverStatusIcon").style.color =
-                  "yellow";
-              }
-            } else if (
-              this.getDisplayName().toLowerCase() === "total_flow_oasis_icon"
-            ) {
-              if (this.getOut().getValueDisplay().toLowerCase() === "normal") {
-                document.getElementById("totalflowiconid").style.color =
-                  "rgb(45, 140, 240)";
-              } else if (
-                this.getOut().getValueDisplay().toLowerCase() === "high"
-              ) {
-                document.getElementById("totalflowiconid").style.color = "red";
-              }
-            }
-          },
-
-          subscriber: sub,
-        });
-        sub.attach("changed", function (prop) {
-          {
-            update(this);
-          }
-        });
+        subscriber: sub,
       });
-    </script>
-  </body>
+      sub.attach("changed", function (prop) {
+        {
+          update(this);
+        }
+      });
+    });
+  </script>
+</body>
+
 </html>
