@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>B3_L0_NMR_EDH</title>
+    <!-- Required meta tags -->
+    <link rel="icon" href="favicon/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link href="css/css-circular-prog-bar.css" rel="stylesheet" />
+    <!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css-circular-prog-bar.css" />
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="dist/apexcharts.css">
+    <style>
+      body {
+        overflow-y: hidden;
+      }
+       /* new */
+.admin-backgroud {
+  background-image: linear-gradient(rgb(0 0 0 / 52%), rgb(3 3 3 / 52%)),
+    url("images/B30_Exterior_D1.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-top: -85px;
+}
+
+.admin-backgroudss {
+  background-image: linear-gradient(rgb(0 0 0 /100%), rgb(3 3 3 / 65%)),
+    url("images/B30_Exterior_D1.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-top: -85px;
+}
+
+.admin-heading {
+  padding-top: 5rem;
+  /* padding-bottom: 1rem; */
+}
+
+.admin-heading h1 {
+  color: white;
+  font-size: 1.8rem;
+}
+
+
+.circular-progress{
+    position: relative;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: conic-gradient(#2d8cf0 3.6deg, #ededed 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-bottom: 8px;
+}
+.circular-progress::before{
+    content: "";
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+.progress-value{
+    position: relative;
+    font-size: 10px;
+    font-weight: 600;
+    color: grey;
+}
+
+      .progress-circle {
+        font-size: 10px !important;
+        margin: 0px auto !important;
+        margin-bottom: 7px !important;
+        font-weight: bold;
+      }
+.progress-circleN {
+        font-size: 10px !important;
+        margin: 0px auto !important;
+        margin-bottom: 7px !important;
+        font-weight: bold;
+      }
+      .e-heater-header {
+        min-height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .e-heater-header h4 {
+        font-size: 1.5rem;
+      }
+
+      .e-heater-table {
+        background-color: rgba(245, 247, 253, 0.6);
+        text-align: center;
+        margin: 15px;
+        /* min-height: 95%; */
+      }
+
+      .progress-circle:after {
+        background: #f9fafe;
+        width: 35px;
+        height: 35px;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+      }
+      .progress-circleN:after {
+        background: #f9fafe;
+        width: 35px;
+        height: 35px;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+      }
+
+      /* .colum-1{
+  max-width: 20px;
+} */
+
+      .e-heater-table p {
+        padding-bottom: 20px;
+      }
+
+      @media (max-width: 1087px) {
+        .e-heater-header h4 {
+          font-size: 1rem;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        .e-heater-header h4 {
+          font-size: 1.2rem;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .e-heater-table p,
+        .e-heater-table .progress-circle .progress-circleN {
+          font-size: 0.7rem;
+        }
+
+        .e-heater-table .progress-circle .progress-circleN {
+          font-size: 8.5px !important;
+        }
+
+        .e-heater-header {
+          height: 60px;
+        }
+      }
+
+      @media (max-width: 425px) {
+        .colum-1 p {
+          padding-bottom: 2px;
+        }
+
+        .e-heater-table p {
+          font-size: 0.4;
+        }
+      }
+
+      .value-bar {
+        border: 7px solid #2d8cf0;
+      }
+
+      /* .progress-circle span {
+            visibility: hidden;
+        } */
+
+      @media (max-width: 328px) {
+        .e-heater-table p {
+          font-size: 10px;
+        }
+      }
+
+      .base-overview-card {
+        /* padding-top: 3rem !important;
+        padding-bottom: 5rem !important; */
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-bg  navbar-top">
+    <a class="navbar-brand" href="file:^Web/KAUST_HTML/KAUST/Main_Page.html"><img width="60" src="file:^Web/KAUST_HTML/KAUST/images/logo.png" alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-btn"><i class="fa fa-bars" aria-hidden="true"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto navlist nav-inner-list-one">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            KAUST Zones <i class="fa fa-chevron-down" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Campus Zone</a>
+            <a class="dropdown-item" href="file:^Web/KAUST_HTML/KAUST/RPIC_Complex.html">RPIC Zone</a>
+            <a class="dropdown-item" href="file:^Web/KAUST_HTML/KAUST/CMOR_Complex.html">CMOR Zone</a>
+            <a class="dropdown-item" href="file:^Web/KAUST_HTML/KAUST/KRTP_Complex.html">KRTP Zone</a>
+            <a class="dropdown-item" href="#">Garden Residential</a>
+            <a class="dropdown-item" href="#">Island</a>
+            <a class="dropdown-item" href="#">Palms Residential</a>
+          </div>
+        </li>
+        <li class="nav-item active">
+          <a id="firestatusid" class="nav-link" href="file:^px/Common/Alarms/FireAlarmConsole.px">Fire Status </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="file:^px/Common/Trend_LandingPage.px">Histories</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Overview <i class="fa fa-chevron-down" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="file:^Web/KAUST_HTML/KAUST/IKAS_Overview.html">IKAS Overview</a>
+            <a class="dropdown-item" href="file:^px/Common/Dashboards/Main/Dashboards_Links.px">IKAS Dashboard</a>
+            
+            <a class="dropdown-item" href="file:^Web/KAUST_HTML/KAUST/Academic_Energy_Dashboard.html">Academic Energy</a>
+            <a class="dropdown-item" href="file:^px/Common/Alarm_LandingPage.px">Alarms Landing</a>
+          </div>
+        </li>
+        <li class="nav-item font-size mr-lg-3">
+          <a id="temperature" class="nav-link value">37°C <i class="fa fa-moon-o" style="color: rgb(255, 255, 255);"></i></a>
+        </li>
+        <li class="nav-item font-size mr-lg-3">
+          <a id="humidity" class="nav-link value">88% <i class="fa fa-tint" style="color: rgb(255, 255, 255);"></i><i
+              class="fa fa-tint"
+              style="color: rgb(255, 255, 255);position: absolute; margin-left: -6px; margin-top: 15px;"></i></a>
+        </li>
+        <li class="nav-item active font-size">
+          <a id="username" class="nav-link green" href="file:^px/Common/Reports/UserActivity/User_Activity.px"><i class="fa fa-user" aria-hidden="true"></i>User</a>
+        </li>
+        <li class="nav-item active font-size">
+          <a class="nav-link green" href="https://ikas.kaust.edu.sa/logout"><i id="logout" class="fa fa-sign-out"> </i></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container-fluid admin-backgroud  px-0">
+    <div class="admin-heading px-3 fade-up">
+      <h1>B3_LEVEL0_NMR_Electrical Duct Heater</h1>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-bottom fade-up">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown-2"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler"><i class="fa fa-bars" aria-hidden="true"></i></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown-2">
+        <ul class="navbar-nav navlist nav-inner-list">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="file:^Web/KAUST_HTML/KAUST/B30_Home_Page.html" id="navbarDropdownMenuLink" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              CMOR_Building 30 <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              
+              <a class="dropdown-item" href="#">CMOR_Building 25 <i  aria-hidden="true"></i></a>
+              <a class="dropdown-item" href="#">CMOR_Building 26 <i  aria-hidden="true"></i></a>
+              <a class="dropdown-item" href="#">CMOR_Building 27 <i  aria-hidden="true"></i></a>
+              <a class="dropdown-item" href="#">CMOR_Building 28 <i  aria-hidden="true"></i></a>
+              <a class="dropdown-item drop-active" href="file:^Web/KAUST_HTML/KAUST/B30_Home_Page.html">CMOR_Building 30 <i class="fa fa-check"
+                  aria-hidden="true"></i></a>
+              <a class="dropdown-item" href="#">CMOR_Building 33 <i  aria-hidden="true"></i></a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Alarms</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Schedules</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Floors</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Equipment</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="file:^Web/KAUST_HTML/B30/BAS/B30_BAS_OVERVIEW.html">BAS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="file:^Web/KAUST_HTML/B30/FDAS/B30_FDAS_OVERVIEW.html">FDAS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">LICS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="file:^Web/KAUST_HTML/PMS Dashboards/B30_PMS_Overview.html">PMS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Histories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Reports</a>
+          </li>
+
+        </ul>
+        <ul class="ml-auto pt-lg-3">
+          <div data-v-6472169e="" data-v-3723a0ae="" class="d-flex">
+            <i id="serverStatusIcon" data-v-6472169e="" class="fa fa-arrow-circle-up" aria-hidden="true"
+              style="color: rgb(25, 190, 107); line-height: 1.5; margin-right: 5px;"></i>
+            <div id="serverStatus" data-v-6472169e="" style="color: rgb(255, 255, 255); line-height: 1.5;"> Online </div>
+          </div>
+        </ul>
+      </div>
+    </nav>
+  </div>
+ <!-- navbar-end -->
+    <section>
+      <div class="container-fluid fade-up">
+        <div class="row">
+          <div class="col-xl-8 col-12" data-aos="fade-up">
+            <div class="e-heater-table mx-0">
+              <div class="row">
+                <div class="col-sm-3 colum-1">
+                  <div class="e-heater-header">
+                    <h4>Air Valve</h4>
+                  </div>
+                  <p>SW-SAV-0047</p>
+                  <p>SW-SAV-0048</p>
+                  <p>SW-SAV-0049</p>
+                  <p>SW-SAV-0050</p>
+                  <p>SW-SAV-0051</p>
+                  <p>SW-SAV-0052</p>
+                  <p>SW-SAV-0053</p>
+                  <p>SW-SAV-0054</p>
+                 
+                </div>
+                <div class="col-sm-3">
+                  <div class="e-heater-header">
+                    <h4>Electrical Duct Heater Demand [KW]</h4>
+                  </div>
+<a href="#" onclick="window.open('https://ikas.kaust.edu.sa/ord?station:%7Cslot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0047/EDH_KW%7Cview:webChart:ChartWidget|view:?fullScreen=true', 'newwindow', 'width=900,height=620'); return false;" style="text-decoration: none;color:#000000;"><p id="v1" >5,000</p> </a>
+<a href="#" onclick="window.open('https://ikas.kaust.edu.sa/ord?station:%7Cslot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0048/EDH_KW%7Cview:webChart:ChartWidget|view:?fullScreen=true', 'newwindow', 'width=900,height=620'); return false;" style="text-decoration: none;color:#000000;"><p id="v2" >5,000</p> </a>
+<a href="#" onclick="window.open('https://ikas.kaust.edu.sa/ord?station:%7Cslot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0049/EDH_KW%7Cview:webChart:ChartWidget|view:?fullScreen=true', 'newwindow', 'width=900,height=620'); return false;" style="text-decoration: none;color:#000000;"><p id="v3" >5,000</p> </a> 
+<a href="#" onclick="window.open('https://ikas.kaust.edu.sa/ord?station:%7Cslot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0050/EDH_KW%7Cview:webChart:ChartWidget|view:?fullScreen=true', 'newwindow', 'width=900,height=620'); return false;" style="text-decoration: none;color:#000000;"><p id="v4" >5,000</p> </a>
+<a href="#" onclick="window.open('https://ikas.kaust.edu.sa/ord?station:%7Cslot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0051/EDH_KW%7Cview:webChart:ChartWidget|view:?fullScreen=true', 'newwindow', 'width=900,height=620'); return false;" style="text-decoration: none;color:#000000;"><p id="v5" >5,000</p> </a>
+<a href="#" onclick="window.open('https://ikas.kaust.edu.sa/ord?station:%7Cslot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0052/EDH_KW%7Cview:webChart:ChartWidget|view:?fullScreen=true', 'newwindow', 'width=900,height=620'); return false;" style="text-decoration: none;color:#000000;"><p id="v6" >5,000</p> </a>
+<a href="#" onclick="window.open('https://ikas.kaust.edu.sa/ord?station:%7Cslot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0053/EDH_KW%7Cview:webChart:ChartWidget|view:?fullScreen=true', 'newwindow', 'width=900,height=620'); return false;" style="text-decoration: none;color:#000000;"><p id="v7" >5,000</p> </a>
+<a href="#" onclick="window.open('https://ikas.kaust.edu.sa/ord?station:%7Cslot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0054/EDH_KW%7Cview:webChart:ChartWidget|view:?fullScreen=true', 'newwindow', 'width=900,height=620'); return false;" style="text-decoration: none;color:#000000;"><p id="v8" >5,000</p> </a>
+ 
+                </div>
+                <div class="col-sm-3">
+                  <div class="e-heater-header">
+                    <h4>Electrical Duct Heater Consumption [KWhr]</h4>
+                  </div>
+<a href="#" onclick="window.open('https://ikas.kaust.edu.sa/ord?station:%7Cslot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0047/EDH_KWH%7Cview:webChart:ChartWidget|view:?fullScreen=true', 'newwindow', 'width=900,height=620'); return false;" style="text-decoration: none;color:#000000;"><p id="kv1" >5,000</p> </a>
+<a href="#" onclick="window.open('https://ikas.kaust.edu.sa/ord?station:%7Cslot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0048/EDH_KWH%7Cview:webChart:ChartWidget|view:?fullScreen=true', 'newwindow', 'width=900,height=620'); return false;" style="text-decoration: none;color:#000000;"><p id="kv2" >5,000</p> </a>
+<a href="#" onclick="window.open('https://ikas.kaust.edu.sa/ord?station:%7Cslot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0049/EDH_KWH%7Cview:webChart:ChartWidget|view:?fullScreen=true', 'newwindow', 'width=900,height=620'); return false;" style="text-decoration: none;color:#000000;"><p id="kv3" >5,000</p> </a> 
+<a href="#" onclick="window.open('https://ikas.kaust.edu.sa/ord?station:%7Cslot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0050/EDH_KWH%7Cview:webChart:ChartWidget|view:?fullScreen=true', 'newwindow', 'width=900,height=620'); return false;" style="text-decoration: none;color:#000000;"><p id="kv4" >5,000</p> </a>
+<a href="#" onclick="window.open('https://ikas.kaust.edu.sa/ord?station:%7Cslot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0051/EDH_KWH%7Cview:webChart:ChartWidget|view:?fullScreen=true', 'newwindow', 'width=900,height=620'); return false;" style="text-decoration: none;color:#000000;"><p id="kv5" >5,000</p> </a>
+<a href="#" onclick="window.open('https://ikas.kaust.edu.sa/ord?station:%7Cslot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0052/EDH_KWH%7Cview:webChart:ChartWidget|view:?fullScreen=true', 'newwindow', 'width=900,height=620'); return false;" style="text-decoration: none;color:#000000;"><p id="kv6" >5,000</p> </a>
+<a href="#" onclick="window.open('https://ikas.kaust.edu.sa/ord?station:%7Cslot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0053/EDH_KWH%7Cview:webChart:ChartWidget|view:?fullScreen=true', 'newwindow', 'width=900,height=620'); return false;" style="text-decoration: none;color:#000000;"><p id="kv7" >5,000</p> </a>
+<a href="#" onclick="window.open('https://ikas.kaust.edu.sa/ord?station:%7Cslot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0054/EDH_KWH%7Cview:webChart:ChartWidget|view:?fullScreen=true', 'newwindow', 'width=900,height=620'); return false;" style="text-decoration: none;color:#000000;"><p id="kv8" >5,000</p> </a>
+                  
+                  
+                </div>
+                <div class="col-sm-3">
+                  <div class="e-heater-header">
+                    <h4>Demand %</h4>
+                  </div>
+                  <div class="circular-progress" id="dv1-progress">
+                    <span class="progress-value" id="dv1" >50%</span>
+                  </div>
+                 
+                  <div class="circular-progress" id="dv2-progress">
+                    <span class="progress-value" id="dv2" >50%</span>
+                  </div>
+                  <div class="circular-progress" id="dv3-progress">
+                    <span class="progress-value" id="dv3" >50%</span>
+                  </div>
+                  <div class="circular-progress" id="dv4-progress">
+                    <span class="progress-value" id="dv4" >50%</span>
+                  </div>
+                  <div class="circular-progress" id="dv5-progress">
+                    <span class="progress-value" id="dv5" >50%</span>
+                  </div>
+                  <div class="circular-progress" id="dv6-progress">
+                    <span class="progress-value" id="dv6" >50%</span>
+                  </div>
+                  <div class="circular-progress" id="dv7-progress">
+                    <span class="progress-value" id="dv7" >50%</span>
+                  </div>
+                  <div class="circular-progress" id="dv8-progress">
+                    <span class="progress-value" id="dv8" >50%</span>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-12" data-aos="fade-up">
+            <div class="row">
+               <div class="col-xl-12 col-md-6 col-12 text-center mt-3 aos-init aos-animate pl-3">
+                <div class="card-outer">
+                  <div class="card-style base-overview-card hover" style="min-height: 303px;background-color: rgba(245, 247, 253, 0.6);" >
+                    <div class="base-title"></div>
+                    <div class="svg-container content-outer"><div id="powerchart"></div>
+                   
+                      <div class="card-label-left">0</div>
+                      <div id="totalpowermaxid" class="card-label-right">2500</div>
+                    
+                    </div>
+                  </div>
+                  <div class="card-content">
+                    <i class="fa fa-bolt"></i>
+                    <h1 id="totalpowerid">1066.9 kW</h1>
+                    <h2 >Total EDH Power</h2>
+                  </div>
+                </div>
+              </div>
+             
+
+
+              <div
+                class="col-xl-12 col-md-6 col-12 text-center mt-3 aos-init aos-animate pl-3 pb-2"
+                data-aos="zoom-in"
+              >
+                <div class="card-outer">
+                  <div
+                    
+                    class="card-style base-overview-card hover"
+                    style="
+                      min-height: 303px;
+                      background-color: rgba(245, 247, 253, 0.6);
+                    "
+                  >
+                    <div  class="base-title"></div>
+                    <div
+                      
+                      class="svg-container content-outer"
+                    ><div id="energychart" ></div>
+                      
+
+                      <div class="card-label-left">0</div>
+                      <div id="totalenergymaxid" class="card-label-right">200000</div>
+                    </div>
+                  </div>
+                  <div class="card-content">
+                    <i class="fa fa-bolt"></i>
+                    <h1 id="totalenergyid">7600.2 kWhr</h1>
+                    <h2>Total EDH Energy</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+    <script src="jQuery-plugin-progressbar.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <script>
+      $(document).ready(function () {
+        $(".navbar-toggler").click(function () {
+          $(".navbar-bg").toggleClass("solids");
+        });
+
+        $(".navbar-toggler-btn").click(function () {
+          $("#navbarNav").toggle();
+        });
+      });
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+     
+     
+     
+     
+    <script>
+        AOS.init({
+            duration: 1000
+        });
+    </script>
+    <script>
+        document.ready(function () {
+            $(".progress-bar").loading();
+
+        });
+
+    </script>
+    
+    <script>
+    let circularProgress = document.querySelector(".circular-progress"),
+    progressValue = document.querySelector(".progress-value");
+
+    function demandToPercent (value) {
+      return ((value * 100) / 100).toFixed(2);
+    } 
+
+    const demandData = [
+      {"dv": 1, "progress":40},
+      {"dv": 2, "progress":80},
+      {"dv": 3, "progress":25},
+      {"dv": 4, "progress":90},
+      {"dv": 5, "progress":100},
+      {"dv": 6, "progress":10},
+      {"dv": 7, "progress":15},
+      {"dv": 8, "progress":50},
+    ]
+
+    
+       
+        
+    let progress = setInterval(() => {
+      demandData.forEach(data => {
+        document.getElementById(`dv${data.dv}`).textContent = `${data.progress}%`;
+        document.getElementById(`dv${data.dv}-progress`).style.background = `conic-gradient(#2d8cf0 ${data.progress * 3.6}deg, #ededed 0deg)`;
+        if(data.progress == 100){
+            clearInterval(progress);
+        } 
+      })
+           
+    }, 1000);
+    
+  var max = 250;
+  function valueToPercent (value) {
+    return ((value * 100) / max).toFixed(2);
+  } 
+  var gaugeAValInn = [];
+  var optionsA = {
+          series: gaugeAValInn,
+          chart: {
+          height: 340,
+          type: 'radialBar',
+          
+        },
+     
+        plotOptions: {
+          radialBar: {
+            startAngle: -130,
+            endAngle: 130,
+          
+            hollow: {
+              size: '76%',
+            
+            },
+            
+            track: {
+          background: '#dfe7f5',
+          strokeWidth: '97%'
+          
+        },
+            dataLabels: {
+              name: {
+                show: false
+              },
+              
+              value: {
+                show: false,
+                offsetY: -75,
+                fontSize: '22px',
+                fontWeight: 'bold'
+              }
+            }
+              
+          },
+        },
+        stroke: {
+          lineCap: 'round',
+          strokeWidth: '75%'
+         
+        },
+       
+      
+        labels: [''],
+        };
+
+        var chartA = new ApexCharts(document.querySelector("#powerchart"), optionsA);
+        chartA.render();
+        
+        
+ 
+</script>
+        <script>
+        
+        var max1 = 1000000;
+  function svalueToPercent (value1) {
+    return ((value1 * 100) / max1).toFixed(2);
+  } 
+  var sgaugeAValInn = [];
+  var optionsB = {
+          series: sgaugeAValInn,
+          chart: {
+          height: 340,
+          type: 'radialBar',
+          
+        },
+     
+        plotOptions: {
+          radialBar: {
+            startAngle: -130,
+            endAngle: 130,
+          
+            hollow: {
+              size: '76%',
+            
+            },
+            
+            track: {
+          background: '#dfe7f5',
+          strokeWidth: '97%'
+          
+        },
+            dataLabels: {
+              name: {
+                show: false
+              },
+              value: {
+                show: false,
+                offsetY: -75,
+                fontSize: '22px',
+                fontWeight: 'bold'
+              }
+            }
+              
+          },
+        },
+        stroke: {
+          lineCap: 'round',
+          strokeWidth: '75%'
+         
+        },
+       
+      
+        labels: [''],
+        };
+
+        var chartB = new ApexCharts(document.querySelector("#energychart"), optionsB);
+        chartB.render();
+        
+ 
+        </script>
+
+<script>
+    var donut1DataInn = [16,24];
+    var kw1DataInn = 0;
+    var total1DataInn = 0;
+    var options1 = {
+      series: donut1DataInn,
+      chart: {
+        width: '110px',
+       
+        type: 'donut',
+      },
+      labels: ['KW', 'Total'],
+      colors: ["#2d8cf0", "#F2E9E1"],
+      dataLabels: {
+      enabled: false
+    },
+    legend: {
+        show: false,
+    },   
+      tooltip: {
+          enabled: false,
+      },
+    
+      responsive: [
+        {
+          breakpoint: 1600,
+          options: {
+            chart: {
+              width: 300
+             
+            },
+          }
+        },
+        {
+          breakpoint: 1350,
+          options: {
+            chart: {
+              width: 280
+            },
+          }
+        }
+        
+      ]
+    };
+
+    var chart1 = new ApexCharts(document.querySelector("#donutchart11"), options1);
+    chart1.render();
+    
+
+  </script>
+
+
+
+    
+    
+    <script type='text/javascript'  src='js/config.js'></script>
+  <script type='text/javascript'  src='js/require.js'></script>
+    
+    
+    
+    <script>
+    
+      var myTimeout = 0;
+        function blinker()
+        {
+          var d = document.getElementById("firestatusid") ;
+          d.style.color= (d.style.color=='red'?'white':'red');
+          myTimeout = setTimeout('blinker()', 900);
+        }
+        
+        function stopBlinker()
+        {
+          //clearTimeout(myTimeout);
+          //myTimeout = 0;
+          var d = document.getElementById("firestatusid") ;
+          d.style.color= (d.style.color=='red'?'white':'white');
+          myTimeout = setTimeout('stopBlinker()', 1000);
+        }
+
+        require(["baja!", 
+         "dialogs"], function (
+         baja, 
+         dialogs) {
+  "use strict";
+  
+  var r = new baja.BatchResolve(["station:|slot:/Drivers/NiagaraNetwork/UN2300/points/UN2300/BAS/LEVEL_5/SOLAR/SOLAR_5026/Temperature", 
+  "station:|slot:/Drivers/NiagaraNetwork/UN2300/points/UN2300/BAS/LEVEL_5/SOLAR/SOLAR_5026/Humidity", "station:|slot:/Services/AlarmService/Global$20Fire$20Points/GlobalFireStatus",
+  "station:|slot:/Drivers/NiagaraNetwork/IS_Status/KRTP_Status","station:|slot:/Drivers/NiagaraNetwork/IS_Status/CMOR_Status",
+  "station:|slot:/Drivers/NiagaraNetwork/IS_Status/RPICH_Status","station:|slot:/Drivers/NiagaraNetwork/CMOR/points/B30/B30_Controller_Status", 
+  "station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0047/SW_SAV_0047_EDH_KW"
+  ,"station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0047/SW_SAV_0047_EDH_KWH",
+  "station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0048/SW_SAV_0048_EDH_KW"
+  ,"station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0048/SW_SAV_0048_EDH_KWH",
+  "station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0049/SW_SAV_0049_EDH_KW"
+  ,"station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0049/SW_SAV_0049_EDH_KWH",
+  "station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0050/SW_SAV_0050_EDH_KW"
+  ,"station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0050/SW_SAV_0050_EDH_KWH",
+  "station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0051/SW_SAV_0051_EDH_KW"
+  ,"station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0051/SW_SAV_0051_EDH_KWH",
+  "station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0052/SW_SAV_0052_EDH_KW"
+  ,"station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0052/SW_SAV_0052_EDH_KWH",
+  "station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0053/SW_SAV_0053_EDH_KW"
+  ,"station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0053/SW_SAV_0053_EDH_KWH",
+  "station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0054/SW_SAV_0054_EDH_KW"
+  ,"station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0054/SW_SAV_0054_EDH_KWH",
+  "station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_NMR_Total_Power"
+  ,"station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_NMR_Total_Energy",
+  "station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/TPG",
+  "station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/TotalPowermax",
+  "station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/TEG",
+  
+  "station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/TotalEnergymax"
+  ,"station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0047_DemandValue"
+  ,"station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0048_DemandValue"
+  ,"station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0049_DemandValue"
+  ,"station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0050_DemandValue"
+  ,"station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0051_DemandValue"
+  ,"station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0052_DemandValue"
+  ,"station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0053_DemandValue"
+  ,"station:|slot:/Drivers/NiagaraNetwork/UN2400_EXT/points/UN2400_EXT/LCS/Duct_Heater/LEVEL_0/NMR/SW_SAV_0054_DemandValue"
+  ]);
+  
+  var sub = new baja.Subscriber(); // Also batch subscribe all resolved Components
+  
+  
+    /*r.resolve({ subscriber: sub })
+    .then(function () {
+      // Get resolved objects
+      var obj = r.getTargetObjects();
+    })
+    .catch(function (err) {
+      // Called if any of the ORDs fail to resolve
+    });*/
+  function update(comp) { 
+    var nameLower = comp.getName().toLowerCase();
+    var outValue = comp.getOut().getValueDisplay();
+    var outNumValue =  comp.getOut().getValue();
+    var outValueLower = comp.getOut().getValueDisplay().toLowerCase();
+    
+    if(nameLower === "sw_sav_nmr_total_power"){
+          document.getElementById("totalpowerid").innerHTML = outValue+" kW";
+          gaugeAValInn = [];
+          gaugeAValInn.push(valueToPercent(outValue));
+          console.log("gaugeAValInn :"+gaugeAValInn);
+          baja.outln("max AA:" + max);
+          chartA.updateSeries(gaugeAValInn);
+          
+        }
+        else if(nameLower === "totalpowermax"){
+        document.getElementById("totalpowermaxid").innerHTML = outValue;
+      }
+         else if(nameLower === "tpg"){
+          baja.outln("max AAA:" + outValue);
+          max = outValue;
+          baja.outln("max AAAA:" + outValue);
+          
+          chartA.updateSeries(gaugeAValInn);
+        }
+        
+        else if(nameLower === "sw_sav_nmr_total_energy"){
+          document.getElementById("totalenergyid").innerHTML = outValue+" kWh";
+          sgaugeAValInn = [];
+          sgaugeAValInn.push(svalueToPercent(outValue));
+          console.log("sgaugeAValInn :"+sgaugeAValInn);
+          baja.outln("max BB:" + max1);
+          chartB.updateSeries(sgaugeAValInn);
+        }
+        else if(nameLower === "totalenergymax"){
+        document.getElementById("totalenergymaxid").innerHTML = outValue;
+      }
+        else if(nameLower === "teg"){
+          baja.outln("max BBB:" + outValue);
+          max1 = outValue;
+          baja.outln("max BBBB:" + outValue);
+          chartB.updateSeries(sgaugeAValInn);
+        }
+        
+        
+        
+    
+     
+      
+      
+     else if(nameLower === "temperature"){
+        //Â°C
+        document.getElementById("temperature").innerHTML = outValue;
+      }
+      else if(nameLower === "sw_sav_0047_edh_kw"){
+        document.getElementById("v1").innerHTML = outValue;
+      }
+
+      else if(nameLower === "sw_sav_0048_edh_kw"){
+        document.getElementById("v2").innerHTML = outValue;
+      }
+      else if(nameLower === "sw_sav_0049_edh_kw"){
+        document.getElementById("v3").innerHTML = outValue;
+      }
+      else if(nameLower === "sw_sav_0050_edh_kw"){
+        document.getElementById("v4").innerHTML = outValue;
+      }
+      else if(nameLower === "sw_sav_0051_edh_kw"){
+        document.getElementById("v5").innerHTML = outValue;
+      }
+      else if(nameLower === "sw_sav_0052_edh_kw"){
+        document.getElementById("v6").innerHTML = outValue;
+      }
+      else if(nameLower === "sw_sav_0053_edh_kw"){
+        document.getElementById("v7").innerHTML = outValue;
+      }
+      else if(nameLower === "sw_sav_0054_edh_kw"){
+        document.getElementById("v8").innerHTML = outValue;
+      }
+      else if(nameLower === "v9"){
+        document.getElementById("v9").innerHTML = outValue;
+      }
+      else if(nameLower === "v10"){
+        document.getElementById("v10").innerHTML = outValue;
+      }
+            else if(nameLower === "v11"){
+        document.getElementById("v11").innerHTML = outValue;
+      }
+       else if(nameLower === "sw_sav_0047_edh_kwh"){
+        document.getElementById("kv1").innerHTML = outValue;
+      }
+       else if(nameLower === "sw_sav_0048_edh_kwh"){
+        document.getElementById("kv2").innerHTML = outValue;
+      }
+       else if(nameLower === "sw_sav_0049_edh_kwh"){
+        document.getElementById("kv3").innerHTML = outValue;
+      }
+       else if(nameLower === "sw_sav_0050_edh_kwh"){
+        document.getElementById("kv4").innerHTML = outValue;
+      }
+       else if(nameLower === "sw_sav_0051_edh_kwh"){
+        document.getElementById("kv5").innerHTML = outValue;
+      }
+       else if(nameLower === "sw_sav_0052_edh_kwh"){
+        document.getElementById("kv6").innerHTML = outValue;
+      }
+       else if(nameLower === "sw_sav_0053_edh_kwh"){
+        document.getElementById("kv7").innerHTML = outValue;
+      }
+       else if(nameLower === "sw_sav_0054_edh_kwh"){
+        document.getElementById("kv8").innerHTML = outValue;
+      }
+       else if(nameLower === "kv9"){
+        document.getElementById("kv9").innerHTML = outValue;
+      }
+       else if(nameLower === "kv10"){
+        document.getElementById("kv10").innerHTML = outValue;
+      }
+       else if(nameLower === "kv11"){
+        document.getElementById("kv11").innerHTML = outValue;
+      }
+      else if(nameLower === "sw_sav_0047_demandvalue"){
+        document.getElementById("dv1").innerHTML = outValue +" %";
+      }
+      else if(nameLower === "sw_sav_0048_demandvalue"){
+        document.getElementById("dv2").innerHTML = outValue +" %";
+      }
+      else if(nameLower === "sw_sav_0049_demandvalue"){
+        document.getElementById("dv3").innerHTML = outValue +" %";
+      }
+      else if(nameLower === "sw_sav_0050_demandvalue"){
+        document.getElementById("dv4").innerHTML = outValue +" %";
+      }
+      else if(nameLower === "sw_sav_0051_demandvalue"){
+        document.getElementById("dv5").innerHTML = outValue +" %";
+      }
+      else if(nameLower === "sw_sav_0052_demandvalue"){
+        document.getElementById("dv6").innerHTML = outValue +" %";
+      }
+      else if(nameLower === "sw_sav_0053_demandvalue"){
+        document.getElementById("dv7").innerHTML = outValue +" %";
+      }
+
+      else if(nameLower === "sw_sav_0054_demandvalue"){
+        document.getElementById("dv8").innerHTML = outValue;
+      }
+      else if(nameLower === "dv9"){
+        document.getElementById("dv9").innerHTML = outValue;
+      }
+      else if(nameLower === "dv10"){
+        document.getElementById("dv10").innerHTML = outValue;
+      }
+      else if(nameLower === "dv11"){
+        document.getElementById("dv11").innerHTML = outValue;
+      }
+       
+     
+      else if(nameLower === "humidity"){
+        document.getElementById("humidity").innerHTML = outValue;
+      }
+      else if(nameLower === "username"){
+        document.getElementById("username").innerHTML = outValue;
+      }
+      else if(nameLower === "globalfirestatus"){
+        if(outValueLower === "normal"){
+          document.getElementById("firestatusid").style.color = "white";
+          stopBlinker();
+        }else if(outValueLower === "fire"){
+          document.getElementById("firestatusid").style.color = "red";
+          blinker();
+        }
+      }
+      else if(nameLower === "cmor_status"){
+        document.getElementById("serverStatus").innerHTML = outValue;
+        if(outValueLower === "online"){
+          document.getElementById("serverStatus").style.color = "white";
+          document.getElementById("serverStatusIcon").classList.remove("fa-arrow-circle-down");
+          document.getElementById("serverStatusIcon").classList.add("fa-arrow-circle-up");
+          document.getElementById("serverStatusIcon").style.color = "lightgreen";
+          
+        }else if(outValueLower === "offline"){
+          document.getElementById("serverStatus").style.color = "white";
+          document.getElementById("serverStatusIcon").classList.remove("fa-arrow-circle-up");
+          document.getElementById("serverStatusIcon").classList.add("fa-arrow-circle-down");
+          document.getElementById("serverStatusIcon").style.color = "yellow";
+        }
+      }
+      
+  }
+       // Or use the each method (will only be called if all ORDs resolve). Each will
+  // be called for each target.
+  r.resolve({
+    each: function () {
+      //baja.outln("Resolved: " + this.getOut().getValue());
+      var currentUser = " "+baja.getUserName().toLowerCase();
+  baja.outln("user: " + currentUser);
+  document.getElementById("username").innerHTML = currentUser;
+  
+    if(this.getDisplayName() === "SW_SAV_NMR_Total_Power"){
+          document.getElementById("totalpowerid").innerHTML = this.getOut().getValueDisplay()+" kW";
+          gaugeAValInn.push(valueToPercent(this.getOut().getValueDisplay()));
+          chartA.updateSeries(gaugeAValInn);
+          
+        }
+        else if(this.getDisplayName().toLowerCase() === "totalpowermax"){
+        document.getElementById("totalpowermaxid").innerHTML = this.getOut().getValueDisplay();
+      }
+        else if(this.getDisplayName().toLowerCase() === "tpg"){
+          max = this.getOut().getValueDisplay();
+          baja.outln("max A:" + max);
+          //chartA.updateSeries(gaugeAValInn);
+        }
+        else if(this.getDisplayName() === "SW_SAV_NMR_Total_Energy"){
+          document.getElementById("totalenergyid").innerHTML = this.getOut().getValueDisplay()+" kWh";
+          sgaugeAValInn.push(svalueToPercent(this.getOut().getValueDisplay()));
+          chartB.updateSeries(sgaugeAValInn);
+        }
+         else if(this.getDisplayName().toLowerCase() === "totalenergymax"){
+        document.getElementById("totalenergymaxid").innerHTML = this.getOut().getValueDisplay();
+      }
+         else if(this.getDisplayName() === "TEG"){
+          max1 = this.getOut().getValueDisplay();
+          baja.outln("max B:" + max1);
+          //chartA.updateSeries(gaugeAValInn);
+        }
+        
+     
+      
+     else if(this.getDisplayName().toLowerCase() === "temperature"){
+        //Â°C
+        document.getElementById("temperature").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "sw_sav_0047_edh_kw"){
+        document.getElementById("v1").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "sw_sav_0048_edh_kw"){
+        document.getElementById("v2").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "sw_sav_0049_edh_kw"){
+        document.getElementById("v3").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "sw_sav_0050_edh_kw"){
+        document.getElementById("v4").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "sw_sav_0051_edh_kw"){
+        document.getElementById("v5").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "sw_sav_0052_edh_kw"){
+        document.getElementById("v6").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "sw_sav_0053_edh_kw"){
+        document.getElementById("v7").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "sw_sav_0054_edh_kw"){
+        document.getElementById("v8").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "v9"){
+        document.getElementById("v9").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "v10"){
+        document.getElementById("v10").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "v11"){
+        document.getElementById("v11").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "sw_sav_0047_edh_kwh"){
+        document.getElementById("kv1").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "sw_sav_0048_edh_kwh"){
+        document.getElementById("kv2").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "sw_sav_0049_edh_kwh"){
+        document.getElementById("kv3").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "sw_sav_0050_edh_kwh"){
+        document.getElementById("kv4").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "sw_sav_0051_edh_kwh"){
+        document.getElementById("kv5").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "sw_sav_0052_edh_kwh"){
+        document.getElementById("kv6").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "sw_sav_0053_edh_kwh"){
+        document.getElementById("kv7").innerHTML = this.getOut().getValueDisplay();
+      }else if(this.getDisplayName().toLowerCase() === "sw_sav_0054_edh_kwh"){
+        document.getElementById("kv8").innerHTML = this.getOut().getValueDisplay();
+      }else if(this.getDisplayName().toLowerCase() === "kv9"){
+        document.getElementById("kv9").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "kv10"){
+        document.getElementById("kv10").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "kv11"){
+        document.getElementById("kv11").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "sw_sav_0047_demandvalue"){
+        document.getElementById("dv1").innerHTML = this.getOut().getValueDisplay() + " %";
+      }
+       else if(this.getDisplayName().toLowerCase() === "sw_sav_0048_demandvalue"){
+        document.getElementById("dv2").innerHTML = this.getOut().getValueDisplay() + " %";
+      }
+       else if(this.getDisplayName().toLowerCase() === "sw_sav_0049_demandvalue"){
+        document.getElementById("dv3").innerHTML = this.getOut().getValueDisplay() + " %";
+      }
+       else if(this.getDisplayName().toLowerCase() === "sw_sav_0050_demandvalue"){
+        document.getElementById("dv4").innerHTML = this.getOut().getValueDisplay() + " %";
+      } else if(this.getDisplayName().toLowerCase() === "sw_sav_0051_demandvalue"){
+        document.getElementById("dv5").innerHTML = this.getOut().getValueDisplay() + " %";
+      } else if(this.getDisplayName().toLowerCase() === "sw_sav_0052_demandvalue"){
+        document.getElementById("dv6").innerHTML = this.getOut().getValueDisplay() + " %";
+      }
+       else if(this.getDisplayName().toLowerCase() === "sw_sav_0053_demandvalue"){
+        document.getElementById("dv7").innerHTML = this.getOut().getValueDisplay() + " %";
+      }
+       else if(this.getDisplayName().toLowerCase() === "sw_sav_0054_demandvalue"){
+        document.getElementById("dv8").innerHTML = this.getOut().getValueDisplay() + " %";
+      }
+       else if(this.getDisplayName().toLowerCase() === "dv9"){
+        document.getElementById("dv9").innerHTML = this.getOut().getValueDisplay();
+      }
+       else if(this.getDisplayName().toLowerCase() === "dv10"){
+        document.getElementById("dv10").innerHTML = this.getOut().getValueDisplay();
+      }
+       else if(this.getDisplayName().toLowerCase() === "dv11"){
+        document.getElementById("dv11").innerHTML = this.getOut().getValueDisplay();
+      }
+     
+      
+      
+      else if(this.getDisplayName().toLowerCase() === "humidity"){
+        document.getElementById("humidity").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "username"){
+        document.getElementById("username").innerHTML = this.getOut().getValueDisplay();
+      }
+      else if(this.getDisplayName().toLowerCase() === "globalfirestatus"){
+        if(this.getOut().getValueDisplay().toLowerCase() === "normal"){
+          document.getElementById("firestatusid").style.color = "white";
+          stopBlinker();
+        }else if(this.getOut().getValueDisplay().toLowerCase() === "fire"){
+          document.getElementById("firestatusid").style.color = "red";
+          blinker();
+        }
+      }
+       
+      else if(this.getDisplayName().toLowerCase() === "alarmstatus"){
+        if(this.getOut().getValueDisplay().toLowerCase() === "normal"){
+          document.getElementById("alarmsIcon").style.color = "lightgreen";
+         
+        }else if(this.getOut().getValueDisplay().toLowerCase() === "active"){
+          document.getElementById("alarmsIcon").style.color = "red";
+         
+        }
+      }
+       
+      else if(this.getDisplayName().toLowerCase() === "cmor_status"){
+        document.getElementById("serverStatus").innerHTML = this.getOut().getValueDisplay();
+        if(this.getOut().getValueDisplay().toLowerCase() === "online"){
+          document.getElementById("serverStatus").style.color = "white";
+          document.getElementById("serverStatusIcon").classList.remove("fa-arrow-circle-down");
+          document.getElementById("serverStatusIcon").classList.add("fa-arrow-circle-up");
+          document.getElementById("serverStatusIcon").style.color = "lightgreen";
+          
+        }else if(this.getOut().getValueDisplay().toLowerCase() === "offline"){
+          document.getElementById("serverStatus").style.color = "white";
+          document.getElementById("serverStatusIcon").classList.remove("fa-arrow-circle-up");
+          document.getElementById("serverStatusIcon").classList.add("fa-arrow-circle-down");
+          document.getElementById("serverStatusIcon").style.color = "yellow";
+        }
+      }
+      
+      
+      
+    },
+    
+    subscriber: sub
+  });
+   sub.attach('changed', function (prop) {
+      { update(this); }
+    }); 
+    
+    
+});
+    </script>
+  </body>
+</html>
